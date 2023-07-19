@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="MissingDefaultResource">
+
+    <TextView
+        android:id="@+id/tvADStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
+        android:text="我是谁 我在哪里" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/load_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/item_background">
+
+        <Button
+            android:id="@+id/preload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="16dp"
+            android:onClick="preloadAd"
+            android:text="preload"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toTopOf="@+id/show_ad"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <Button
+            android:id="@+id/load_ad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="loadBannerAd"
+            android:text="Load Ad"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toTopOf="@+id/show_ad"
+            app:layout_constraintLeft_toRightOf="@+id/preload" />
+
+        <Button
+            android:id="@+id/show_ad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="16dp"
+            android:onClick="showBannerAd"
+            android:text="Show Ad 1"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <EditText
+            android:id="@+id/placement_id"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:enabled="true"
+            android:hint="slotId"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/show_ad"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_native"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

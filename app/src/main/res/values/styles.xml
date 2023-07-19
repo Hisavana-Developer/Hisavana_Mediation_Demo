@@ -1,0 +1,45 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="SplashScreen" parent="Theme.SplashScreenBase">
+        <item name="postSplashScreenTheme">?android:attr/theme</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/icon_splash</item>
+<!--        <item name="splashScreenIconSize">50dp</item>-->
+    </style>
+
+
+    <style name="Theme.SplashScreenBase" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/compat_splash_screen</item>
+        <item name="android:opacity">opaque</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:fitsSystemWindows">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">
+            shortEdges
+        </item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
+
+    <style name="BottomDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowAnimationStyle">@style/BottomDialogAnimation</item>
+    </style>
+
+    <style name="BottomDialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/bottom_dialog_slide_show</item>
+        <item name="android:windowExitAnimation">@anim/bottom_dialog_slide_hide</item>
+    </style>
+
+
+
+</resources>

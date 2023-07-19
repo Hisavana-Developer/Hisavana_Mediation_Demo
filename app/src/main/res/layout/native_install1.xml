@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ad_unit"
+    android:layout_width="match_parent"
+    android:layout_height="124dp"
+    android:background="@drawable/item_background"
+    tools:ignore="MissingDefaultResource">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.hisavana.mediation.ad.TIconView
+                android:id="@+id/native_ad_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp" />
+
+            <TextView
+                android:id="@+id/native_ad_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/native_ad_icon"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="Title"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/native_ad_body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/native_ad_title"
+                android:layout_toRightOf="@+id/native_ad_icon"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="des1"
+                android:textColor="@android:color/black"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <com.hisavana.mediation.ad.TMediaView
+            android:id="@+id/coverview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="5dp"/>
+
+    </LinearLayout>
+    <!-- 广告来源标示 显示 媒体自己控制显示的位置 -->
+    <com.hisavana.mediation.ad.TAdChoicesView
+        android:id="@+id/adChoicesView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+      android:layout_margin="5dp"  />
+
+    <com.hisavana.mediation.ad.TAdCloseView
+        android:id="@+id/adCloseView"
+        android="@+id/adChoicesView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_toLeftOf="@+id/adChoicesView" />
+
+    <com.hisavana.mediation.ad.TStoreMarkView
+        android:id="@+id/store_mark_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
+
+</RelativeLayout>

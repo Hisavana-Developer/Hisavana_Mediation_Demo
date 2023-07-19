@@ -1,0 +1,122 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tvSDKVersion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        android:minHeight="50dp"
+        android:text="version  V1.0" />
+
+    <Button
+        android:id="@+id/btn_banner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="BannerAd"
+        android:text="BannerAd"
+        app:layout_constraintTop_toBottomOf="@+id/tvSDKVersion"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/banner_in_list_test_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/btn_banner"
+        android:onClick="onBannerInListClick"
+        android:layout_marginTop="8dp"
+        android:textAllCaps="false"
+        android:text="Banner In List Test" />
+
+    <Button
+        android:id="@+id/btn_interstitial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="InterstitialAd"
+        android:text="InterstitialAd"
+        app:layout_constraintTop_toBottomOf="@+id/banner_in_list_test_btn"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btn_native"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="onClickNativeAd"
+        android:text="NativeAd"
+        app:layout_constraintTop_toBottomOf="@+id/btn_interstitial"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btn_native_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="onClickNativeAdList"
+        android:text="NativeAd In List"
+        app:layout_constraintTop_toBottomOf="@+id/btn_native"
+        android:textAllCaps="false" />
+
+
+<!--    <Button-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:onClick="onClickHotApp"-->
+<!--        android:text="load iconads"-->
+<!--        android:textAllCaps="false" />-->
+
+    <Button
+        android:id="@+id/btn_splash_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickSplash"
+        android:text="load splash"
+        app:layout_constraintTop_toBottomOf="@+id/btn_native_list"
+        android:textAllCaps="false" />
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="onMediationVideoClick"
+        app:layout_constraintTop_toBottomOf="@+id/btn_splash_2"
+        android:text="mediation video"
+        android:textAllCaps="false"/>
+
+
+    <TextView
+        android:id="@+id/tv_agreement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_privacy"
+        android:onClick="clickAgreement"
+        android:text="User Agreement"
+        android:textColor="#2196F3"
+        android:textSize="12sp"
+        android:layout_marginBottom="24dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/tv_privacy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_agreement"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Privacy Policy"
+        android:textSize="12sp"
+        android:onClick="clickPrivacy"
+        android:textColor="#2196F3"
+        android:layout_marginBottom="24dp"
+        tools:ignore="MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

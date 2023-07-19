@@ -1,0 +1,2 @@
+rootProject.name = "admediation-demo"
+include ':app'

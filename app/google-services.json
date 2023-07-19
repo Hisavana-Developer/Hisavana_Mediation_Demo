@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "351409965326",
+    "project_id": "admediation-3cd6d",
+    "storage_bucket": "admediation-3cd6d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:351409965326:android:22fd68a1c0e9d8628fef5f",
+        "android_client_info": {
+          "package_name": "com.demo.mediation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "351409965326-bs1f163hklhhpogbhs812uepvknovc47.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.demo.mediation",
+            "certificate_hash": "e8cf6aa5cc7fa5fc4998e44ff5bfd82aab1afd12"
+          }
+        },
+        {
+          "client_id": "351409965326-srmenjhdfj3672kvoao46m7tnb4qi074.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCinKXJshWHkI_JR08LrNoNxLjavTWaSpw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "351409965326-srmenjhdfj3672kvoao46m7tnb4qi074.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

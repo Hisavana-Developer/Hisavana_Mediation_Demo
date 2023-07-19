@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Ad Mediation</string>
+
+    <string name="privacy_content" tools:ignore="ExtraTranslation">
+       Welcome to Hisavana SDK Demo! We will help you understand the services we provide and how we collect and process personal information through
+        &lt;font color=\'#5A71FF\'>&lt;a href= \'http://h5.eagllwin.com/doc/rule-detail.html?id=46\'>User Agreement&lt;/a>&lt;/font>
+        and
+        &lt;font color=\'#5A71FF\'>&lt;a href= \'https://h5.eagllwin.com/doc/rule-detail.html?id=78\'>Privacy Policy&lt;/a>&lt;/font>
+    </string>
+</resources>

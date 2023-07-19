@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ad_unit"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <com.hisavana.mediation.ad.TIconView
+        android:id="@+id/native_ad_icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/native_ad_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="Title"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+</LinearLayout>

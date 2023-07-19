@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_interstitial"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/load_content"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/item_background">
+
+        <Button
+            android:id="@+id/preload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="16dp"
+            android:onClick="preloadAd"
+            android:text="preload"
+            android:textAllCaps="false" />
+        <Button
+            android:id="@+id/btn_load_interstitial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="16dp"
+            android:text="Load Interstitial"
+            android:textAllCaps="false" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/tAdInterstitial_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:text="showAd" />
+
+    <TextView
+        android:id="@+id/tvADStatus"
+        android:layout_marginBottom="60dp"
+        android:layout_width="match_parent"
+        android:text="我是谁 我在哪里"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"/>
+
+
+</LinearLayout>
