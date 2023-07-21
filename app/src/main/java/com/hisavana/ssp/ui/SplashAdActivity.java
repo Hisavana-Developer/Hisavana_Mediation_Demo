@@ -63,7 +63,7 @@ public class SplashAdActivity extends BaseActivity {
     }
 
     public void onShowSplash(View view) {
-        if (tSplashAd.isReady()) {
+        if (tSplashAd != null && tSplashAd.isReady()) {
             tSplashAd.showAd(adView);
         } else {
             ToastUtil.showLongToast("Ad has expired");

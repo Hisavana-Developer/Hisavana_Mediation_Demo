@@ -23,23 +23,13 @@
         android:textAllCaps="false" />
 
     <Button
-        android:id="@+id/banner_in_list_test_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/btn_banner"
-        android:onClick="onBannerInListClick"
-        android:layout_marginTop="8dp"
-        android:textAllCaps="false"
-        android:text="Banner In List Test" />
-
-    <Button
         android:id="@+id/btn_interstitial"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:onClick="InterstitialAd"
         android:text="InterstitialAd"
-        app:layout_constraintTop_toBottomOf="@+id/banner_in_list_test_btn"
+        app:layout_constraintTop_toBottomOf="@+id/btn_banner"
         android:textAllCaps="false" />
 
     <Button
