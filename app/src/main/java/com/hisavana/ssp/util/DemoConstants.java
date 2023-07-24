@@ -11,7 +11,7 @@ public class DemoConstants {
     public static final String SLOT_ID_VIDEO = "2209270m7IgWJU";
     public static final String SLOT_ID_HOT_APP = "220927b5RqdzC4";
    // public static final boolean IS_DEBUG = Log.isLoggable("is_debug", Log.DEBUG);
-    public static final boolean IS_DEBUG =  true;
+    public static final boolean IS_DEBUG =  false;
 
     public static final boolean TEST_DEVICE = Log.isLoggable("test_device", Log.DEBUG);
 

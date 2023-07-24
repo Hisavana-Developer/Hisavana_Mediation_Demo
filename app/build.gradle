@@ -26,6 +26,8 @@ android {
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         multiDexEnabled true
+
+        buildConfigField "String","sdk_version","\"${rootProject.ext.SDK_version}\""
     }
 
     buildTypes {

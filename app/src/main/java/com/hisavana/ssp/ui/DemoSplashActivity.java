@@ -1,5 +1,6 @@
 package com.hisavana.ssp.ui;
 
+import static com.hisavana.ssp.util.DemoConstants.IS_DEBUG;
 import static com.hisavana.ssp.util.DemoConstants.SLOT_ID_SPLASH;
 import static com.hisavana.ssp.util.DemoConstants.TEST_SLOT_ID_SPLASH;
 
@@ -43,6 +44,7 @@ public class DemoSplashActivity extends AppCompatActivity implements PrivacyAgre
     private TSplashAd tSplashAd;
     private Handler delayHandler = new Handler(Looper.getMainLooper());
     private boolean isShowAd;
+    private boolean isGoToMain;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -89,8 +91,8 @@ public class DemoSplashActivity extends AppCompatActivity implements PrivacyAgre
         AdxServerConfig.setAppModle(AdxServerConfig.TEST);
         TAdManager.init(this, new TAdManager.AdConfigBuilder()
                 .setAppId(DemoConstants.IS_DEBUG ? DemoConstants.TEST_APP_ID : DemoConstants.APP_ID)
-                .setDebug(true)
-                .testDevice(false)
+                .setDebug(IS_DEBUG)
+                .testDevice(!IS_DEBUG)
                 .build());
     }
 
@@ -122,7 +124,7 @@ public class DemoSplashActivity extends AppCompatActivity implements PrivacyAgre
             public void run() {
                 finish();
             }
-        }, 100);
+        }, 500);
     }
 
     @Override
@@ -138,6 +140,7 @@ public class DemoSplashActivity extends AppCompatActivity implements PrivacyAgre
         if(tSplashAd != null){
             tSplashAd.destroy();
         }
+        delayHandler.removeCallbacks(mRunnable);
     }
 
     private Runnable mRunnable = new Runnable() {
@@ -150,6 +153,8 @@ public class DemoSplashActivity extends AppCompatActivity implements PrivacyAgre
     };
 
     public  static class AdListener extends TAdListener {
+
+        private boolean isClosed;
 
         private final WeakReference<DemoSplashActivity>  activityWeakReference;
 
@@ -178,8 +183,9 @@ public class DemoSplashActivity extends AppCompatActivity implements PrivacyAgre
         @Override
         public void onClosed(int i) {
             DemoSplashActivity activity = activityWeakReference.get();
-            if(activity != null) {
+            if(activity != null && !isClosed) {
                 activity.goToMain();
+                isClosed = true;
             }
         }
 

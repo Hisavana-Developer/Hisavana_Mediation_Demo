@@ -46,7 +46,7 @@ public class DemoMainActivity extends AppCompatActivity {
         // 显示当前引入SDK版本号
         TextView tvSDKVersion = findViewById(R.id.tvSDKVersion);
         // com.hisavana.common.BuildConfig
-        tvSDKVersion.setText("current sdk version is 2.6.0.4");
+        tvSDKVersion.setText("current sdk version is "+BuildConfig.sdk_version);
 
 
     }
@@ -96,7 +96,7 @@ public class DemoMainActivity extends AppCompatActivity {
     }
 
     public void clickAgreement(View view) {
-        Uri uri = Uri.parse("https://h5.eagllwin.com/doc/rule-detail.html?id=78");
+        Uri uri = Uri.parse("http://h5.eagllwin.com/doc/rule-detail.html?id=80");
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
     }

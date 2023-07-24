@@ -10,8 +10,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
-        android:minHeight="50dp"
-        android:text="version  V1.0" />
+        android:minHeight="50dp" />
 
     <Button
         android:id="@+id/btn_banner"
