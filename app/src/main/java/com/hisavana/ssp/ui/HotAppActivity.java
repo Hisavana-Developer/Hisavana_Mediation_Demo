@@ -49,6 +49,8 @@ public class HotAppActivity extends BaseActivity implements View.OnClickListener
     private String mSlotId = SLOT_ID_HOT_APP;
 
     private HotAdapter hotAdapter;
+    private List<TAdNativeInfo> nativeInfos = new ArrayList<>();
+    private String sceneToken;
 
     // =============================================================================================
     @Override
@@ -72,9 +74,9 @@ public class HotAppActivity extends BaseActivity implements View.OnClickListener
         slotidetv.setEnabled(false);
         loadBtn = this.findViewById(R.id.load_ad);
         loadBtn.setOnClickListener(this);
-
         show_ad = this.findViewById(R.id.show_ad);
         show_ad.setOnClickListener(this);
+        sceneToken = tNativeAd.enterScene("hot_scene_id");
     }
 
     @Override
@@ -90,11 +92,10 @@ public class HotAppActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void nativeInfoRelease(){
-        if(mNativeInfos!=null && !mNativeInfos.isEmpty()){
-            for (TAdNativeInfo nativeInfo:mNativeInfos){
-                nativeInfo.release();
+        for (TAdNativeInfo nativeInfo : nativeInfos) {
+            if(nativeInfo != null){
+                nativeInfo.destroyAd();
             }
-            mNativeInfos = null;
         }
     }
     private void removeView(View v) {
@@ -112,9 +113,10 @@ public class HotAppActivity extends BaseActivity implements View.OnClickListener
                 loadAd(false);
                 break;
             case R.id.show_ad:
-                hotAdapter.setNativeInfos(mNativeInfos);
-                if (mNativeInfos != null && !mNativeInfos.isEmpty() && mNativeInfos.get(0) instanceof AdNativeInfo) {
-                    showAdStatus("MaterialStyle--" + ((AdNativeInfo) mNativeInfos.get(0)).getMaterialStyle());
+                List<TAdNativeInfo> adList = tNativeAd.getNativeAdInfo();
+                if(adList != null && adList.size()>0){
+                    nativeInfos.addAll(adList);
+                    hotAdapter.setNativeInfos(adList);
                 }
                 break;
         }
@@ -152,44 +154,11 @@ public class HotAppActivity extends BaseActivity implements View.OnClickListener
 
     // =============================================================================================
 
-
-    /**
-     * Native 广告 里面有多条
-     */
-    private List<TAdNativeInfo> mNativeInfos = null;
-
-
     private TAdRequestBody creatBodyRequest() {
         return new TAdRequestBody.AdRequestBodyBuild()
                 .setAdListener(new TAdAlliance(this))
                 .build();
     }
-
-
-    /**
-     * 装载 广告View
-     *
-     * @param adNativeInfo 广告信息
-     */
-    private void inflateView(TAdNativeInfo adNativeInfo,TAdNativeView tAdNativeView) {
-        if (adNativeInfo == null) return;
-        // 判断广告过期
-        if (adNativeInfo.isExpired()) {
-            ToastUtil.showLongToast("广告过期了");
-        }
-
-        Log.i("ssp", "img:" + adNativeInfo.isImageValid() + " icon:" + adNativeInfo.isIconValid());
-        ViewBinder viewBinder = new ViewBinder.Builder(R.layout.native_hotapp_install)
-                .iconId(R.id.native_ad_icon).titleId(R.id.native_ad_title).contextMode(NativeContextMode.LIST).build();
-
-        if (adNativeInfo.isExpired()) {
-            AdLogUtil.Log().d("NativeAdActivity", "过期了");
-        } else {
-            tNativeAd.bindNativeView(tAdNativeView, adNativeInfo, viewBinder);
-        }
-
-    }
-
 
     // =============================================================================================
 
@@ -205,7 +174,7 @@ public class HotAppActivity extends BaseActivity implements View.OnClickListener
         }
 
         @Override
-        public void onLoad(List<TAdNativeInfo> tAdNativeInfos,int source) {
+        public void onLoad() {
             if (weakReference.get() == null) {
                 return;
             }
@@ -214,7 +183,6 @@ public class HotAppActivity extends BaseActivity implements View.OnClickListener
             weakReference.get().showAdStatus("get success");
             weakReference.get().nativeInfoRelease();
             weakReference.get().hotAdapter.clear();
-            weakReference.get().mNativeInfos = tAdNativeInfos;
         }
 
         @Override
@@ -304,7 +272,7 @@ public class HotAppActivity extends BaseActivity implements View.OnClickListener
         public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
             ViewBinder viewBinder = new ViewBinder.Builder(R.layout.native_hotapp_install)
                     .iconId(R.id.native_ad_icon).titleId(R.id.native_ad_title).contextMode(NativeContextMode.LIST).build();
-            tNativeAd.bindNativeView(((HotHolder)viewHolder).native_layout, nativeInfos.get(i), viewBinder);
+            tNativeAd.bindNativeView(((HotHolder)viewHolder).native_layout, nativeInfos.get(i), viewBinder,sceneToken);
         }
 
         @Override

@@ -213,6 +213,8 @@ public class NativeAdInListActivity extends BaseActivity {
         private TAdNativeView tAdNativeView;
         /***Activity*/
         private WeakReference<NativeAdInListActivity> weakReference;
+       /** 场景 token **/
+        private String sceneToken;
 
         public ItemBean(String title, TAdNativeInfo nativeInfo, int position, NativeAdInListActivity activity) {
             this.title = title;
@@ -229,15 +231,23 @@ public class NativeAdInListActivity extends BaseActivity {
             this.tAdNativeView = tAdNativeView;
             this.tAdNativeView.setTag(position);
             this.tAdNativeView.setVisibility(View.GONE);
-
+           if(nativeAd == null){
+               nativeAd = new TNativeAd(weakReference.get(), mSlotId);
+               nativeAd.setRequestBody(new TAdRequestBody.AdRequestBodyBuild()
+                       .setAdListener(this).build());
+           }
+           if(TextUtils.isEmpty(sceneToken)){
+               sceneToken = nativeAd.enterScene("native_list_scene_id");
+           }
+           List<TAdNativeInfo> list = nativeAd.getNativeAdInfo();
+           if(list!=null && list.size()>0){
+               nativeInfo = list.get(0);
+           }
             // 加载广告
             if (nativeInfo == null) {
                 if (weakReference == null || weakReference.get() == null) {
                     return;
                 }
-                nativeAd = new TNativeAd(weakReference.get(), mSlotId);
-                nativeAd.setRequestBody(new TAdRequestBody.AdRequestBodyBuild()
-                        .setAdListener(this).build());
                 nativeAd.loadAd();
             } else {
                 bindAd();
@@ -246,7 +256,7 @@ public class NativeAdInListActivity extends BaseActivity {
 
         private void bindAd() {
             tAdNativeView.setVisibility(View.VISIBLE);
-            nativeAd.bindNativeView(tAdNativeView, nativeInfo, getBinder());
+            nativeAd.bindNativeView(tAdNativeView, nativeInfo, getBinder(),sceneToken);
             AdLogUtil.Log().d(TAG, "------->bindValues --> bindNativeView(),position == " + position + "/" + nativeInfo.getAdId());
             setAdjustView(nativeInfo, tAdNativeView.findViewById(R.id.coverview));
         }
@@ -281,23 +291,22 @@ public class NativeAdInListActivity extends BaseActivity {
             }
         }
 
-
-        // -----------------------------------------------------------------------------------------
-
-
+        // ----------------------------------------------------------------------------------------
         @Override
-        public void onLoad(List<TAdNativeInfo> tAdNativeInfos, int source) {
+        public void onLoad() {
             AdLogUtil.Log().d(TAG, "------->TAdAlliance --> onLoad position ==== " + position);
-
-            if (nativeInfo == null && tAdNativeInfos != null && !tAdNativeInfos.isEmpty()) {
-                nativeInfo = tAdNativeInfos.get(0);
-                bindAd();
-            }
 
             if (weakReference == null || weakReference.get() == null) {
                 return;
             }
             weakReference.get().showAdStatus("Get success = " + position);
+            if (nativeInfo == null && nativeAd != null) {
+                List<TAdNativeInfo> nativeInfos = nativeAd.getNativeAdInfo();
+                if(nativeInfos != null && !nativeInfos.isEmpty()){
+                    nativeInfo = nativeInfos.get(0);
+                }
+                bindAd();
+            }
         }
 
         @Override
@@ -306,12 +315,18 @@ public class NativeAdInListActivity extends BaseActivity {
             if (weakReference == null || weakReference.get() == null) {
                 return;
             }
+            sceneToken = null;
             weakReference.get().showAdStatus("i = " + position + " ,Ad failed to load Reason for failure:" + errorCode.getErrorMessage());
         }
 
         @Override
-        public void onShow(int source) {
-            AdLogUtil.Log().d(TAG, "TAdAlliance --> onShow，position = " + position);
+        public void onShow(int i) {
+
+        }
+
+        @Override
+        public void onNativeFeedShow(int source, TAdNativeInfo tAdNativeInfo) {
+            AdLogUtil.Log().d(TAG, "TAdAlliance --> show position = " + position+"; source = "+source);
             if (weakReference == null || weakReference.get() == null) {
                 return;
             }
@@ -319,8 +334,13 @@ public class NativeAdInListActivity extends BaseActivity {
         }
 
         @Override
-        public void onClicked(int source) {
-            AdLogUtil.Log().d(TAG, "TAdAlliance --> onClicked position = " + position);
+        public void onClicked(int i) {
+
+        }
+
+        @Override
+        public void onNativeFeedClicked(int source, TAdNativeInfo tAdNativeInfo) {
+            AdLogUtil.Log().d(TAG, "TAdAlliance --> onClicked position = " + position+"; source = "+source);
             if (weakReference == null || weakReference.get() == null) {
                 return;
             }
@@ -328,12 +348,8 @@ public class NativeAdInListActivity extends BaseActivity {
         }
 
         @Override
-        public void onClosed(int source) {
-            AdLogUtil.Log().d(TAG, "TAdAlliance --> onClosed position = " + position);
-            if (weakReference == null || (weakReference.get() == null)) {
-                return;
-            }
-            weakReference.get().showAdStatus("Ad  close， i = " + position);
+        public void onClosed(int i) {
+
         }
 
         @Override

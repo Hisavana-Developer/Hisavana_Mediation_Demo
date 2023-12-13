@@ -55,9 +55,6 @@ public class InterstitialActivity extends BaseActivity implements View.OnClickLi
         mTInterstitialAd.setRequestBody(tAdRequest);
     }
 
-    public void preloadAd(View view){
-        loadAd(true);
-    }
     private void loadAd(boolean isPreload){
         showAdStatus("Ad loading...");
         if(isPreload){
@@ -73,7 +70,7 @@ public class InterstitialActivity extends BaseActivity implements View.OnClickLi
         switch (v.getId()) {
             case R.id.tAdInterstitial_show:
                 if (mTInterstitialAd != null){
-                    if (!mTInterstitialAd.isReady()){
+                    if (!mTInterstitialAd.hasAd()){
                         ToastUtil.showLongToast("Ad expired");
                     }else{
                         mTInterstitialAd.show(InterstitialActivity.this);
@@ -115,7 +112,7 @@ public class InterstitialActivity extends BaseActivity implements View.OnClickLi
         }
 
         @Override
-        public void onLoad(int source) {
+        public void onLoad() {
             if (weakReference.get() == null) {
                 return;
             }

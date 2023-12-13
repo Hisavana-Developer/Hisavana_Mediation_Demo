@@ -5,6 +5,7 @@ import static com.hisavana.ssp.util.DemoConstants.TEST_SLOT_ID_SPLASH;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -37,6 +38,7 @@ public class SplashAdActivity extends BaseActivity {
     private TSplashView adView;
     private TSplashAd tSplashAd;
     private String mSlotId = DemoConstants.IS_DEBUG ? TEST_SLOT_ID_SPLASH : SLOT_ID_SPLASH;
+    private String sceneToken;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -63,8 +65,8 @@ public class SplashAdActivity extends BaseActivity {
     }
 
     public void onShowSplash(View view) {
-        if (tSplashAd != null && tSplashAd.isReady()) {
-            tSplashAd.showAd(adView);
+        if (tSplashAd != null && tSplashAd.hasAd()) {
+            tSplashAd.showAd(adView,sceneToken);
         } else {
             ToastUtil.showLongToast("Ad has expired");
         }
@@ -80,7 +82,10 @@ public class SplashAdActivity extends BaseActivity {
                             .setAdListener(new TAdAlliance(this)).build());
             tSplashAd.setOnSkipListener(new TOnSkipListener());
         }
-        tSplashAd.preload();
+        if(TextUtils.isEmpty(sceneToken)){
+            sceneToken = tSplashAd.enterScene("splash_scene_id");
+        }
+        tSplashAd.loadAd();
     }
 
     /**
@@ -143,13 +148,8 @@ public class SplashAdActivity extends BaseActivity {
         }
 
         @Override
-        public void onLoad(List<TAdNativeInfo> tAdNativeInfos, int source) {
-            super.onLoad(tAdNativeInfos, source);
-        }
-
-        @Override
-        public void onLoad(int source) {
-            super.onLoad(source);
+        public void onLoad() {
+            super.onLoad();
             if (null == weakReference.get()) {
                 return;
             }

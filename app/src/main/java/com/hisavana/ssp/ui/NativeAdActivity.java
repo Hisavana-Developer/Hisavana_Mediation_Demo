@@ -6,6 +6,7 @@ import static com.hisavana.ssp.util.DemoConstants.TEST_SLOT_ID_NATIVE;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.cloud.hisavana.sdk.api.view.MediaView;
+import com.cloud.hisavana.sdk.common.bean.TaNativeInfo;
 import com.cloud.sdk.commonutil.widget.TranCircleImageView;
 import com.hisavana.common.bean.AdNativeInfo;
 import com.hisavana.common.bean.TAdErrorCode;
@@ -34,6 +36,7 @@ import com.transsion.core.utils.ScreenUtil;
 import com.transsion.core.utils.ToastUtil;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -53,10 +56,9 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
     private EditText slotidetv;
     private TAdNativeView nativeView;
     private Handler handler = new Handler(Looper.getMainLooper());
-    private TAdNativeInfo mNativeInfo = null;
     private String mSlotId = DemoConstants.IS_DEBUG ? TEST_SLOT_ID_NATIVE : SLOT_ID_NATIVE;
 
-
+    private String sceneToken;
     // =============================================================================================
 
 
@@ -86,13 +88,17 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
             tNativeAd.destroy();
             tNativeAd = null;
         }
-        if (mNativeInfo != null) {
-            mNativeInfo.release();
+        if (mNativeInfos != null) {
+            for (TAdNativeInfo nativeInfo: mNativeInfos) {
+               if(nativeInfo != null){
+                   nativeInfo.destroyAd();
+               }
+            }
+            mNativeInfos.clear();
         }
         if (nativeView != null) {
             nativeView.release();
         }
-        mNativeInfo = null;
         nativeView = null;
         super.onDestroy();
         removeView(slotidetv);
@@ -110,19 +116,19 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.load_ad:
+                if(TextUtils.isEmpty(sceneToken)){
+                    sceneToken =  tNativeAd.enterScene("native_scene_id");
+                }
                 loadAd(false);
                 break;
             case R.id.show_ad:
-                if (mNativeInfos != null && mNativeInfos.size() > 0) {
-                    inflateView(mNativeInfos.get(0));
-                    if (mNativeInfos.get(0) instanceof AdNativeInfo) {
-                        showAdStatus("MaterialStyle--" + ((AdNativeInfo) mNativeInfos.get(0)).getMaterialStyle());
-                    }
+                List<TAdNativeInfo> nativeInfos = tNativeAd.getNativeAdInfo();
+                if (nativeInfos != null && nativeInfos.size() > 0) {
+                    TAdNativeInfo nativeInfo = nativeInfos.get(0);
+                    mNativeInfos.add(nativeInfo);
+                    inflateView(nativeInfo);
+                    showAdStatus("MaterialStyle--" + ((AdNativeInfo) nativeInfo).getMaterialStyle());
                 }
-                break;
-
-            case R.id.preload:
-                loadAd(true);
                 break;
         }
     }
@@ -148,7 +154,7 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
     /**
      * Native 广告 里面有多条
      */
-    private List<TAdNativeInfo> mNativeInfos = null;
+    private final  List<TAdNativeInfo> mNativeInfos = new ArrayList<>();
 
 
     private TAdRequestBody creatBodyRequest() {
@@ -165,11 +171,6 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
      */
     private void inflateView(TAdNativeInfo adNativeInfo) {
         if (adNativeInfo == null || nativeView == null) return;
-        if (mNativeInfo != null) {
-            mNativeInfo.release();
-        }
-        mNativeInfo = adNativeInfo;
-
         // 判断广告过期
         if (adNativeInfo.isExpired()) {
             ToastUtil.showLongToast("Ad has expired!");
@@ -184,8 +185,8 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
         if (adNativeInfo.isExpired()) {
             AdLogUtil.Log().d("NativeAdActivity", "过期了");
         } else {
-            tNativeAd.bindNativeView(nativeView, adNativeInfo, viewBinder);
-            setAdjustView(adNativeInfo,findViewById(R.id.coverview));
+            tNativeAd.bindNativeView(nativeView, adNativeInfo, viewBinder,sceneToken);
+           // setAdjustView(adNativeInfo,findViewById(R.id.coverview));
         }
 
     }
@@ -206,9 +207,9 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
          }
     }
 
-    private void closeAd(){
-        if (mNativeInfo != null) {
-            mNativeInfo.release();
+    private void closeAd(TAdNativeInfo tAdNativeInfo){
+        if (tAdNativeInfo != null) {
+            tAdNativeInfo.release();
         }
         if (nativeView != null) {
             nativeView.release();
@@ -229,16 +230,13 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
         }
 
         @Override
-        public void onLoad(List<TAdNativeInfo> tAdNativeInfos, int source) {
+        public void onLoad() {
             if (weakReference.get() == null) {
                 return;
             }
 
             weakReference.get().loadBtn.setText("Load native");
             weakReference.get().showAdStatus("get success");
-
-            weakReference.get().mNativeInfos = tAdNativeInfos;
-            AdLogUtil.Log().d(ComConstants.AD_FLOW, "NativeAdActivity --> onLoad TAdNativeInfo is:=" + tAdNativeInfos.toString());
         }
 
         @Override
@@ -293,7 +291,7 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
             super.onClosed(tAdNativeInfo);
           NativeAdActivity activity = weakReference.get();
           if (activity != null){
-              activity.closeAd();
+              activity.closeAd(tAdNativeInfo);
           }
         }
     }

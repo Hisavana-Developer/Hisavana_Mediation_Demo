@@ -122,10 +122,8 @@ public class AdLoader {
     private class TAdAlliance extends TAdListener {
 
         @Override
-        public void onLoad(List<TAdNativeInfo> tAdNativeInfos, int source) {
+        public void onLoad() {
             mNativeInfos.clear();
-            mNativeInfos.addAll(tAdNativeInfos);
-            AdLogUtil.Log().d(ComConstants.AD_FLOW, "NativeAdActivity --> onLoad，source" + source + "，TAdNativeInfo is:=" + tAdNativeInfos.toString());
         }
 
         @Override

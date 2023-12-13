@@ -190,7 +190,7 @@ public class DemoSplashActivity extends AppCompatActivity implements PrivacyAgre
         }
 
         @Override
-        public void onLoad(int i) {
+        public void onLoad() {
             DemoSplashActivity activity = activityWeakReference.get();
             if(activity != null){
                 activity.isShowAd = true;

@@ -51,6 +51,15 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_native"
         android:textAllCaps="false" />
 
+    <Button
+        android:id="@+id/btn_icon_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:onClick="onClickIconAdList"
+        android:text="Icon Ad In List"
+        app:layout_constraintTop_toBottomOf="@+id/btn_native_list"
+        android:textAllCaps="false" />
 
 <!--    <Button-->
 <!--        android:layout_width="match_parent"-->
@@ -66,7 +75,7 @@
         android:layout_height="wrap_content"
         android:onClick="onClickSplash"
         android:text="load splash"
-        app:layout_constraintTop_toBottomOf="@+id/btn_native_list"
+        app:layout_constraintTop_toBottomOf="@+id/btn_icon_list"
         android:textAllCaps="false" />
 
 

@@ -37,6 +37,7 @@
         </activity>
         <activity android:name=".ui.NativeAdActivity" />
         <activity android:name=".ui.NativeAdInListActivity" />
+        <activity android:name=".ui.IconAdActivity" />
         <activity android:name=".ui.BannerAdActivity" />
         <activity android:name=".ui.InterstitialActivity" />
         <activity android:name=".ui.HotAppActivity" />

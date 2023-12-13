@@ -103,7 +103,7 @@ public class ADMediationVideoActivity extends BaseActivity {
     public void onShowClick(View view) {
         if (!showing && loading) {
             showing = true;
-            if (tVideoAd != null && tVideoAd.isReady()) {
+            if (tVideoAd != null && tVideoAd.hasAd()) {
                 tVideoAd.show(this);
                 startDelayTimer();
             }
@@ -148,12 +148,12 @@ public class ADMediationVideoActivity extends BaseActivity {
         }
 
         @Override
-        public void onLoad(int source) {
-            super.onLoad(source);
+        public void onLoad() {
+            super.onLoad();
             if (weakReference.get() == null) {
                 return;
             }
-            weakReference.get().showAdStatus("获取成功 source "+source);
+            weakReference.get().showAdStatus("get ad success ");
             AdLogUtil.Log().d(VIDEO_TAG, "ADMediationVideoActivity --> onAllianceLoad");
         }
 

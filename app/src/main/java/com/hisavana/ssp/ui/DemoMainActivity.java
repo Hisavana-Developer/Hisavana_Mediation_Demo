@@ -106,4 +106,9 @@ public class DemoMainActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
     }
+
+    public void onClickIconAdList(View view) {
+        Intent intent = new Intent(this, IconAdActivity.class);
+        startActivity(intent);
+    }
 }

@@ -105,7 +105,7 @@ public class BannerAdActivity extends BaseActivity {
         }
 
         @Override
-        public void onLoad(int source) {
+        public void onLoad() {
             AdLogUtil.Log().d(ComConstants.AD_FLOW, "BannerAdActivity --> onLoad");
             if (weakReference.get() == null) {
                 return;
