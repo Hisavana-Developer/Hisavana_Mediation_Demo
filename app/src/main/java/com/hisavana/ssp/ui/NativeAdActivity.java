@@ -177,7 +177,7 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
         }
 
         Log.i("ssp", "img:" + adNativeInfo.isImageValid() + " icon:" + adNativeInfo.isIconValid());
-        ViewBinder viewBinder = new ViewBinder.Builder(R.layout.native_install1).titleId(R.id.native_ad_title)
+        ViewBinder viewBinder = new ViewBinder.Builder(R.layout.native_install).titleId(R.id.native_ad_title)
                 .iconId(R.id.native_ad_icon).callToActionId(R.id.call_to_action).descriptionId(R.id.native_ad_body)
                 .mediaId(R.id.coverview).sponsoredId(R.id.sponsored).ratingId(R.id.rating).priceId(R.id.price).storeMarkView(R.id.store_mark_view)
                 .likesId(R.id.likes).downloadsId(R.id.downloads).actionIds(R.id.call_to_action).contextMode(NativeContextMode.NORMAL)
