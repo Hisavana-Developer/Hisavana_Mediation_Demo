@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
+
 import com.hisavana.common.bean.TAdErrorCode;
 import com.hisavana.common.bean.TAdRequestBody;
 import com.hisavana.common.constant.ComConstants;
@@ -31,6 +33,7 @@ public class InterstitialActivity extends BaseActivity implements View.OnClickLi
     private Handler handler = new Handler(Looper.getMainLooper());
     private String mSlotId = DemoConstants.IS_DEBUG ? TEST_SLOT_ID_INTERSTITIAL : SLOT_ID_INTERSTITIAL;
 
+    private boolean ifSaveInstanceState = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,12 +42,15 @@ public class InterstitialActivity extends BaseActivity implements View.OnClickLi
         tvADStatus=findViewById(R.id.tvADStatus);
         showAdStatus("Ready to load ads");
 
-        mTInterstitialAd = new TInterstitialAd(this, mSlotId);
+        if (mTInterstitialAd == null) {
+            mTInterstitialAd = new TInterstitialAd(this, mSlotId);
+        }
         loadBtn = findViewById(R.id.btn_load_interstitial);
         showButton = findViewById(R.id.tAdInterstitial_show);
         showButton.setOnClickListener(this);
         loadBtn.setOnClickListener(this);
         creatRequest();
+        ifSaveInstanceState = false;
     }
 
 
@@ -86,9 +92,18 @@ public class InterstitialActivity extends BaseActivity implements View.OnClickLi
     }
 
     @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        //避免横竖屏切换导致广告销毁
+        if (null != outState) {
+            ifSaveInstanceState = true;
+        }
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (mTInterstitialAd != null) {
+        if (mTInterstitialAd != null && !ifSaveInstanceState) {
             mTInterstitialAd.destroy();
             mTInterstitialAd = null;
         }
@@ -102,7 +117,6 @@ public class InterstitialActivity extends BaseActivity implements View.OnClickLi
             ((ViewGroup) viewGroup).removeView(v);
         }
     }
-
 
     private static class TAdAlliance extends TAdListener {
         WeakReference<InterstitialActivity> weakReference;
@@ -175,7 +189,6 @@ public class InterstitialActivity extends BaseActivity implements View.OnClickLi
                 }
             });
         }
-
 
         @Override
         public void onClosed(int source) {
