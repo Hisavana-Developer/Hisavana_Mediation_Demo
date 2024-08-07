@@ -38,7 +38,7 @@ public class InterstitialActivity extends BaseActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interstitial);
-
+        setTitle("Interstitial");
         tvADStatus=findViewById(R.id.tvADStatus);
         showAdStatus("Ready to load ads");
 

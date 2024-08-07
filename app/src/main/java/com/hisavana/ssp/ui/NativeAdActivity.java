@@ -66,7 +66,7 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_native_ad);
-
+        setTitle("Native");
         tvADStatus = findViewById(R.id.tvADStatus);
         showAdStatus("Ready to load ads");
 

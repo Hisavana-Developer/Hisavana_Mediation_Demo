@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 
@@ -30,7 +31,7 @@ import java.util.List;
 /**
  * 开屏广告Demo
  */
-public class SplashAdActivity extends BaseActivity {
+public class SplashAdActivity extends BaseActivity implements View.OnClickListener{
 
     /**
      * 开屏广告 View
@@ -42,50 +43,20 @@ public class SplashAdActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        setTitle("Splash");
         setContentView(R.layout.splash_ad);
-
+        super.onCreate(savedInstanceState);
         tvADStatus = findViewById(R.id.tvADStatus);
         showAdStatus("Ready to load ads");
-
         adView = findViewById(R.id.splash_ad);
-
     }
 
-    public void onLoadSplah(View view) {
-        showAdStatus("Ad loading...");
-        if (tSplashAd == null) {
-            tSplashAd = new TSplashAd(this, mSlotId);
-            tSplashAd.setRequestBody(
-                    new TAdRequestBody.AdRequestBodyBuild()
-                            .setAdListener(new TAdAlliance(this)).build());
-            tSplashAd.setOnSkipListener(new TOnSkipListener());
-        }
-        tSplashAd.loadAd();
-    }
-
-    public void onShowSplash(View view) {
-        if (tSplashAd != null && tSplashAd.hasAd()) {
-            tSplashAd.showAd(adView,sceneToken);
-        } else {
-            ToastUtil.showLongToast("Ad has expired");
-        }
-        AdLogUtil.Log().d(ComConstants.AD_FLOW, "SplashAdActivity --> showAd:");
-    }
-
-    public void onPreloadSplah(View view) {
-        showAdStatus("Ad loading...");
-        if (tSplashAd == null) {
-            tSplashAd = new TSplashAd(this, mSlotId);
-            tSplashAd.setRequestBody(
-                    new TAdRequestBody.AdRequestBodyBuild()
-                            .setAdListener(new TAdAlliance(this)).build());
-            tSplashAd.setOnSkipListener(new TOnSkipListener());
-        }
-        if(TextUtils.isEmpty(sceneToken)){
-            sceneToken = tSplashAd.enterScene("splash_scene_id");
-        }
-        tSplashAd.loadAd();
+    @Override
+    protected void initListener() {
+        super.initListener();
+        findViewById(R.id.preload_ad_btn).setOnClickListener(this);
+        findViewById(R.id.load_ad_btn).setOnClickListener(this);
+        findViewById(R.id.show_ad_btn).setOnClickListener(this);
     }
 
     /**
@@ -112,6 +83,45 @@ public class SplashAdActivity extends BaseActivity {
         if (tSplashAd != null) {
             tSplashAd.destroy();
             tSplashAd = null;
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.preload_ad_btn:
+                showAdStatus("Ad loading...");
+                if (tSplashAd == null) {
+                    tSplashAd = new TSplashAd(this, mSlotId);
+                    tSplashAd.setRequestBody(
+                            new TAdRequestBody.AdRequestBodyBuild()
+                                    .setAdListener(new TAdAlliance(this)).build());
+                    tSplashAd.setOnSkipListener(new TOnSkipListener());
+                }
+                if(TextUtils.isEmpty(sceneToken)){
+                    sceneToken = tSplashAd.enterScene("splash_scene_id");
+                }
+                tSplashAd.loadAd();
+                break;
+            case R.id.load_ad_btn:
+                showAdStatus("Ad loading...");
+                if (tSplashAd == null) {
+                    tSplashAd = new TSplashAd(this, mSlotId);
+                    tSplashAd.setRequestBody(
+                            new TAdRequestBody.AdRequestBodyBuild()
+                                    .setAdListener(new TAdAlliance(this)).build());
+                    tSplashAd.setOnSkipListener(new TOnSkipListener());
+                }
+                tSplashAd.loadAd();
+                break;
+            case R.id.show_ad_btn:
+                if (tSplashAd != null && tSplashAd.hasAd()) {
+                    tSplashAd.showAd(adView,sceneToken);
+                } else {
+                    ToastUtil.showLongToast("Ad has expired");
+                }
+                AdLogUtil.Log().d(ComConstants.AD_FLOW, "SplashAdActivity --> showAd:");
+                break;
         }
     }
 

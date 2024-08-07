@@ -3,7 +3,7 @@
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e8e8e8"
+    android:background="@color/anythink_F5F5F5"
     android:orientation="vertical">
 
 <!--    <com.hisavana.mediation.ad.TBannerView-->
@@ -11,33 +11,37 @@
 <!--        android:layout_width="wrap_content"-->
 <!--        android:layout_height="wrap_content"-->
 <!--        android:layout_centerHorizontal="true" />-->
-
     <TextView
         android:id="@+id/tvADStatus"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="68dp"
         android:layout_width="match_parent"
-        android:text="我是谁 我在哪里"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        android:text="Ad status"
         android:layout_height="wrap_content"/>
-
     <LinearLayout
         android:id="@+id/load_content"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="68dp"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="16dp"
         android:background="@drawable/item_background">
 
         <Button
             android:id="@+id/load_banner"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/selector_bg_1"
             android:layout_alignParentBottom="true"
-            android:layout_marginLeft="16dp"
             android:onClick="loadBannerAd"
             android:text="load banner"
+            android:textSize="18sp"
+            android:layout_marginLeft="@dimen/anythink_10dp"
+            android:layout_marginTop="@dimen/anythink_padding_5dp"
+            android:layout_marginRight="@dimen/anythink_10dp"
+            android:textColor="@drawable/selector_btn"
             android:textAllCaps="false" />
-
 
     </LinearLayout>
 

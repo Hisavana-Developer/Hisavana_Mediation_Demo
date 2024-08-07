@@ -4,42 +4,64 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/tvADStatus"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
-        android:text="我是谁 我在哪里" />
+        android:layout_below="@id/native_layout"
+        android:layout_above="@id/load_content">
+        <TextView
+            android:id="@+id/tvADStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Ad Status" />
+    </ScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/load_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/item_background">
 
         <Button
             android:id="@+id/load_ad"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/selector_bg_1"
+            android:layout_alignParentBottom="true"
+            android:textSize="18sp"
+            android:layout_marginLeft="@dimen/anythink_10dp"
+            android:layout_marginTop="@dimen/anythink_padding_5dp"
+            android:layout_marginRight="@dimen/anythink_10dp"
+            android:textColor="@drawable/selector_btn"
             android:onClick="loadBannerAd"
             android:text="Load Ad"
             android:textAllCaps="false"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
 
         <Button
             android:id="@+id/show_ad"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/selector_bg_1"
+            android:layout_alignParentBottom="true"
+            android:textSize="18sp"
+            android:layout_marginLeft="@dimen/anythink_10dp"
+            android:layout_marginTop="@dimen/anythink_padding_5dp"
+            android:layout_marginRight="@dimen/anythink_10dp"
+            android:textColor="@drawable/selector_btn"
             android:onClick="showBannerAd"
             android:text="Show Ad"
             android:textAllCaps="false"
-           app:layout_constraintStart_toEndOf="@+id/load_ad"/>
-
+            app:layout_constraintTop_toBottomOf="@id/load_ad"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

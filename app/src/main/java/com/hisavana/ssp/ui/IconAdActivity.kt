@@ -43,6 +43,7 @@ class IconAdActivity : BaseActivity(), OnRefreshLoadMoreListener {
     var page = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTitle("Native Icon");
         setContentView(R.layout.activity_icon)
         smartRefreshLayout = findViewById(R.id.icon_refresh)
         iconListView = findViewById(R.id.icon_list_view)

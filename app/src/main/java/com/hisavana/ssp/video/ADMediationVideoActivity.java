@@ -43,6 +43,7 @@ public class ADMediationVideoActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Video");
         setContentView(R.layout.activity_admediation_video);
 
         tvADStatus = findViewById(R.id.tvADStatus);

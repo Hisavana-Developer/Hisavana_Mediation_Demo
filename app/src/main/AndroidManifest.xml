@@ -2,15 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.hisavana.ssp">
-
-<!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
-<!--    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />-->
+    <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> -->
+    <!-- <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> -->
     <uses-permission android:name="android.permission.INTERNET" />
-<!--    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
-<!--    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />-->
-<!--    <uses-permission android:name="android.permission.READ_PHONE_STATE" />-->
-<!--    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
-<!--    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
 
     <application
         android:name=".app.BaseApp"
@@ -20,6 +14,9 @@
         android:roundIcon="@mipmap/icon_app_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".ui.NativeMainActivity"
+            android:exported="false" />
         <activity
             android:name=".video.ADMediationVideoActivity"
             android:exported="false" />
@@ -31,18 +28,17 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-9157456537535562~4840692163" />
 
-        <activity android:name=".ui.DemoMainActivity"
+        <activity
+            android:name=".ui.DemoMainActivity"
             android:exported="true"
-            android:launchMode="singleTask">
-        </activity>
+            android:launchMode="singleTask"></activity>
         <activity android:name=".ui.NativeAdActivity" />
         <activity android:name=".ui.NativeAdInListActivity" />
         <activity android:name=".ui.IconAdActivity" />
         <activity android:name=".ui.BannerAdActivity" />
         <activity android:name=".ui.InterstitialActivity" />
         <activity android:name=".ui.HotAppActivity" />
-        <activity
-            android:name=".ui.SplashAdActivity" /> <!-- google ad activity -->
+        <activity android:name=".ui.SplashAdActivity" /> <!-- google ad activity -->
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
@@ -51,17 +47,15 @@
             tools:replace="android:theme" />
         <activity
             android:name=".ui.DemoSplashActivity"
-            android:theme="@style/SplashScreen"
+            android:exported="true"
             android:screenOrientation="portrait"
-            android:exported="true">
+            android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
     </application>
 
 </manifest>

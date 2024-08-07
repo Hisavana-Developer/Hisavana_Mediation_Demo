@@ -1,6 +1,7 @@
 package com.hisavana.ssp.ui;
 
 import static com.hisavana.ssp.util.DemoConstants.IS_DEBUG;
+import static com.hisavana.ssp.util.DemoConstants.LOG_TAG;
 import static com.hisavana.ssp.util.DemoConstants.SLOT_ID_SPLASH;
 import static com.hisavana.ssp.util.DemoConstants.TEST_SLOT_ID_SPLASH;
 
@@ -80,7 +81,7 @@ public class DemoSplashActivity extends AppCompatActivity implements PrivacyAgre
             loadAd();
             delayHandler.postDelayed(mRunnable,2000);
         } else {
-            Log.d("fangxuhui", "展示弹窗");
+            Log.d(LOG_TAG, "展示弹窗");
             PrivacyAgreementDialog dialog = new PrivacyAgreementDialog(this);
             dialog.show(getSupportFragmentManager(), "privacy");
         }

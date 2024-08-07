@@ -3,40 +3,50 @@
     android:id="@+id/activity_interstitial"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <LinearLayout
-        android:id="@+id/load_content"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_gravity="bottom"
-        android:background="@drawable/item_background">
-
-        <Button
-            android:id="@+id/btn_load_interstitial"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="16dp"
-            android:text="Load Interstitial"
-            android:textAllCaps="false" />
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/tAdInterstitial_show"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:text="showAd" />
+    android:orientation="vertical"
+    android:paddingBottom="50dp">
 
     <TextView
         android:id="@+id/tvADStatus"
         android:layout_marginBottom="60dp"
-        android:layout_width="match_parent"
-        android:text="我是谁 我在哪里"
         android:layout_marginTop="10dp"
-        android:layout_height="wrap_content"/>
+        android:layout_width="match_parent"
+        android:text="Ad status"
+        android:layout_height="wrap_content" />
 
+       <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical" />
+    
+        <Button
+            android:id="@+id/btn_load_interstitial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_bg_1"
+            android:layout_alignParentBottom="true"
+            android:onClick="loadBannerAd"
+            android:textSize="18sp"
+            android:layout_marginLeft="@dimen/anythink_10dp"
+            android:layout_marginTop="@dimen/anythink_padding_5dp"
+            android:layout_marginRight="@dimen/anythink_10dp"
+            android:textColor="@drawable/selector_btn"
+            android:text="Load Interstitial"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/tAdInterstitial_show"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_bg_1"
+            android:layout_alignParentBottom="true"
+            android:onClick="loadBannerAd"
+            android:textSize="18sp"
+            android:layout_marginLeft="@dimen/anythink_10dp"
+            android:layout_marginTop="@dimen/anythink_padding_5dp"
+            android:layout_marginRight="@dimen/anythink_10dp"
+            android:textColor="@drawable/selector_btn"
+            android:text="showAd" />
 
 </LinearLayout>

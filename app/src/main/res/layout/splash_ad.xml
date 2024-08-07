@@ -4,67 +4,107 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:ignore="MissingClass">
+    tools:ignore="MissingClass"
+    android:background="@color/anythink_F5F5F5">
 
     <com.hisavana.mediation.ad.TSplashView
         android:id="@+id/splash_ad"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/linear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/anythink_padding">
 
-        <Button
-            android:id="@+id/preload"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_weight="1"
-            android:onClick="onPreloadSplah"
-            android:text="Preload splash"
-            android:textAllCaps="false" />
+            <RelativeLayout
+                android:id="@+id/rl_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
 
-        <Button
-            android:id="@+id/btn_splash_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="onLoadSplah"
-            android:text="Load Splash"
-            android:textAllCaps="false" />
+                <ImageView
+                    android:id="@+id/iv_format"
+                    android:layout_width="80dp"
+                    android:layout_height="140dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/anythink_text_size_12"
+                    android:src="@mipmap/ic_test_splash" />
 
-        <Button
-            android:id="@+id/btn_splash_show"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="onShowSplash"
-            android:text="Show Splash"
-            android:textAllCaps="false" />
+                <TextView
+                    android:id="@+id/tv_format"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_format"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/anythink_10dp"
+                    android:layout_marginBottom="@dimen/anythink_10dp"
+                    android:text="Splash"
+                    android:textColor="@color/anythink_666666"
+                    android:textSize="@dimen/anythink_desc_size" />
 
-<!--        <Button-->
-<!--            android:id="@+id/btn_splash_3"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_weight="1"-->
-<!--            android:onClick="onClickCheckCache"-->
-<!--            android:text="check splash cache"-->
-<!--            android:textAllCaps="false" />-->
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            </RelativeLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rl_type"
+                android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvADStatus"
-        android:background="#000000"
-        android:alpha="0.3"
-        android:textColor="#ffffff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:text="我是谁 我在哪里"
-        android:visibility="visible"
-        android:layout_marginTop="50dp"/>
+                <TextView
+                    android:id="@+id/tvADStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:text="Ad Status"
+                    android:textColor="@color/anythink_1E2231"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/preload_ad_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/anythink_45dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="@dimen/anythink_20dp"
+                    android:background="@drawable/selector_bg_1"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="Preload"
+                    android:textColor="@drawable/selector_btn"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/load_ad_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/anythink_45dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/anythink_20dp"
+                    android:background="@drawable/selector_bg_1"
+                    android:clickable="true"
+                    android:gravity="center"
+                    android:text="Load Splash"
+                    android:textColor="@drawable/selector_btn"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/show_ad_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/anythink_45dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/anythink_20dp"
+                    android:background="@drawable/selector_bg_1"
+                    android:clickable="true"
+                    android:gravity="center"
+
+                    android:text="Show Splash"
+                    android:textColor="@drawable/selector_btn"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+    </com.hisavana.mediation.ad.TSplashView>
+
 </RelativeLayout>

@@ -3,6 +3,8 @@ package com.hisavana.ssp.util;
 import android.util.Log;
 
 public class DemoConstants {
+
+    public static final String LOG_TAG = "Hisavina";
     public static final String APP_ID = "211227vpZInkdX";
     public static final String SLOT_ID_BANNER = "220927LcY0xn9b";
     public static final String SLOT_ID_SPLASH = "2209270yYwZgEQ";

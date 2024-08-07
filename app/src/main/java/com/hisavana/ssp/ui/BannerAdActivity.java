@@ -1,5 +1,6 @@
 package com.hisavana.ssp.ui;
 
+import static com.hisavana.ssp.util.DemoConstants.LOG_TAG;
 import static com.hisavana.ssp.util.DemoConstants.SLOT_ID_BANNER;
 import static com.hisavana.ssp.util.DemoConstants.TEST_SLOT_ID_BANNER;
 
@@ -69,7 +70,7 @@ public class BannerAdActivity extends BaseActivity {
     public void loadBannerAd(View view) {
         if(adview == null){
             adview = new TBannerView(this);
-            Log.d("fangxuhui","adview == " + adview.hashCode());
+            Log.d(LOG_TAG,"adview == " + adview.hashCode());
             adview.setAdSize(BannerSize.SIZE_320x50);
             adview.setAdUnitId(mSlotId);
             TAdRequestBody tAdRequest = new TAdRequestBody.AdRequestBodyBuild()

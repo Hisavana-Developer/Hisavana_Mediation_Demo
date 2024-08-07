@@ -53,7 +53,7 @@ public class NativeAdInListActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_native_ad_in_list);
-
+        setTitle("Native List");
         RecyclerView rv = findViewById(R.id.rv);
         rv.setLayoutManager(new LinearLayoutManager(this));
          adapter = new InnerAdapter(list);

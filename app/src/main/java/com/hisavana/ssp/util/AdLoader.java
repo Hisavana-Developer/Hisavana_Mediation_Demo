@@ -49,7 +49,7 @@ public class AdLoader {
             tNativeAd.setRequestBody(creatBodyRequest());
             long a = System.currentTimeMillis();
             tNativeAd.loadAd();
-            Log.d("fangxuhui","广告加载时常 ------》"+(System.currentTimeMillis()-a));
+            Log.d("LogTag","广告加载时常 ------》"+(System.currentTimeMillis()-a));
         }
     }
 
