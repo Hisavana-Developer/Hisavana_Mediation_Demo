@@ -51,7 +51,6 @@ import java.util.List;
 public class NativeAdActivity extends BaseActivity implements View.OnClickListener {
     //改变加载广告，布局宽度，微调样式
     private Button loadBtn,  show_ad;
-    private boolean is_change_style;
     private TNativeAd tNativeAd;
     private EditText slotidetv;
     private TAdNativeView nativeView;
@@ -59,8 +58,6 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
     private String mSlotId = DemoConstants.IS_DEBUG ? TEST_SLOT_ID_NATIVE : SLOT_ID_NATIVE;
 
     private String sceneToken;
-    // =============================================================================================
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,8 +114,9 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
         switch (v.getId()) {
             case R.id.load_ad:
                 if(TextUtils.isEmpty(sceneToken)){
-                    sceneToken =  tNativeAd.enterScene("native_scene_id");
+                    sceneToken =  tNativeAd.enterScene("native_scene_id",1);
                 }
+                // 加载广告
                 loadAd(false);
                 break;
             case R.id.show_ad:
@@ -177,11 +175,23 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
         }
 
         Log.i("ssp", "img:" + adNativeInfo.isImageValid() + " icon:" + adNativeInfo.isIconValid());
-        ViewBinder viewBinder = new ViewBinder.Builder(R.layout.native_install).titleId(R.id.native_ad_title)
-                .iconId(R.id.native_ad_icon).callToActionId(R.id.call_to_action).descriptionId(R.id.native_ad_body)
-                .mediaId(R.id.coverview).sponsoredId(R.id.sponsored).ratingId(R.id.rating).priceId(R.id.price).storeMarkView(R.id.store_mark_view)
-                .likesId(R.id.likes).downloadsId(R.id.downloads).actionIds(R.id.call_to_action).contextMode(NativeContextMode.NORMAL)
-                .adChoicesView(R.id.adChoicesView).adCloseView(R.id.adCloseView).contextMode(NativeContextMode.NORMAL).build();
+        ViewBinder viewBinder = new ViewBinder.Builder(R.layout.native_install)
+                .titleId(R.id.native_ad_title)
+                .iconId(R.id.native_ad_icon)
+                .callToActionId(R.id.call_to_action)
+                .descriptionId(R.id.native_ad_body)
+                .mediaId(R.id.coverview)
+                .sponsoredId(R.id.sponsored)
+                .ratingId(R.id.rating)
+                .priceId(R.id.price)
+                .storeMarkView(R.id.store_mark_view)
+                .likesId(R.id.likes)
+                .downloadsId(R.id.downloads)
+                .actionIds(R.id.call_to_action)
+                .contextMode(NativeContextMode.NORMAL)
+                .adChoicesView(R.id.adChoicesView)
+                .adCloseView(R.id.adCloseView)
+                .contextMode(NativeContextMode.NORMAL).build();
         if (adNativeInfo.isExpired()) {
             AdLogUtil.Log().d("NativeAdActivity", "过期了");
         } else {
@@ -190,7 +200,7 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
         }
 
     }
-
+    //用于调整图像视图的边界，使其根据图像的纵横比调整自身的大小
     private void setAdjustView(TAdNativeInfo adNativeInfo,TMediaView tMediaView){
           if(adNativeInfo == null || adNativeInfo.getAdSource() != 0 || tMediaView == null){
               return;
@@ -219,9 +229,7 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
     // =============================================================================================
 
 
-    /**
-     * 广告加载回调
-     */
+    // 广告监听器，监听广告的请求、填充、展示、点击、异常、关闭动作的回调
     private static class TAdAlliance extends TAdListener {
         WeakReference<NativeAdActivity> weakReference;
 
@@ -231,6 +239,7 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
 
         @Override
         public void onLoad() {
+            // Request success
             if (weakReference.get() == null) {
                 return;
             }
@@ -241,6 +250,7 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
 
         @Override
         public void onError(TAdErrorCode errorCode) {
+            // Request failed
             if (weakReference.get() == null) {
                 return;
             }
@@ -256,12 +266,17 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
         }
 
         @Override
-        public void onStart(int source) {
-            if (weakReference.get() == null) {
-                return;
-            }
-            weakReference.get().showAdStatus("onStart");
+        public void onNativeFeedShow(int source, TAdNativeInfo adNativeInfo){
+            // Called when a native ad is displayed
+        }
 
+        @Override
+        public void onNativeFeedClicked(int source, TAdNativeInfo adNativeInfo) {
+            // Called when a native ad is clicked
+        }
+        @Override
+        public void onShowError(TAdErrorCode errorCode) {
+            // Called when an ad show failed
         }
 
         @Override
@@ -271,7 +286,6 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
             }
             weakReference.get().showAdStatus("Ad display");
             AdLogUtil.Log().d(ComConstants.AD_FLOW, "NativeAdActivity --> onShow");
-
         }
 
         @Override
@@ -289,12 +303,12 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
         @Override
         public void onClosed(TAdNativeInfo tAdNativeInfo) {
             super.onClosed(tAdNativeInfo);
+            // Called when a native ad close
           NativeAdActivity activity = weakReference.get();
           if (activity != null){
+              // 适当时机释放
               activity.closeAd(tAdNativeInfo);
           }
         }
     }
-
-
 }

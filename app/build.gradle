@@ -79,18 +79,14 @@ android {
 configurations.all {
     // check for updates every build
     resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
-
-    resolutionStrategy {
-        force 'com.transsion.api:oneid:1.0.0.9'
-    }
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.21"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.8.0"
     implementation 'androidx.core:core-ktx:1.3.2'
-    //  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.10"
     implementation 'com.google.android.material:material:1.4.0'
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
@@ -99,18 +95,17 @@ dependencies {
 
     //lite
     //implementation("com.cloud.hisavana.sdk.mediation:admob-lite-lib:$versionName")
-    implementation("com.cloud.hisavana.sdk.mediation:admob-lib:$SDK_version")
-
-    implementation("com.cloud.hisavana.sdk.mediation:fan-lib:$SDK_version")
     implementation("com.cloud.hisavana.sdk.mediation:mediation-lib:$SDK_version")
+    implementation("com.cloud.hisavana.sdk.mediation:admob-lib:$SDK_version")
+    implementation("com.cloud.hisavana.sdk.mediation:fan-lib:$SDK_version")
     implementation("com.cloud.hisavana.sdk.mediation:applovin-lib:$SDK_version")
-    implementation("com.cloud.hisavana.sdk.mediation:unity-lib:$SDK_version")
     // 142 新增广告源
     implementation("com.cloud.hisavana.sdk.mediation:ironsource-lib:$SDK_version")
-    // 143 新增广告源
-    implementation("com.cloud.hisavana.sdk.mediation:vungle-lib:$SDK_version")
+    implementation("com.cloud.hisavana.sdk.mediation:unity-lib:$SDK_version")
     // 143 新增广告源
     implementation("com.cloud.hisavana.sdk.mediation:inmobi-lib:$SDK_version")
+    // 143 新增广告源
+    implementation("com.cloud.hisavana.sdk.mediation:vungle-lib:$SDK_version")
     // 202新增广告源
     implementation("com.cloud.hisavana.sdk.mediation:adcolony-lib:$SDK_version")
     implementation("com.cloud.hisavana.sdk.mediation:pangle-lib:$SDK_version")

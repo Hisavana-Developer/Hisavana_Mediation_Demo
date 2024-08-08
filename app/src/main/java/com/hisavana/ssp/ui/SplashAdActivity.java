@@ -47,8 +47,8 @@ public class SplashAdActivity extends BaseActivity implements View.OnClickListen
         setContentView(R.layout.splash_ad);
         super.onCreate(savedInstanceState);
         tvADStatus = findViewById(R.id.tvADStatus);
-        showAdStatus("Ready to load ads");
         adView = findViewById(R.id.splash_ad);
+        showAdStatus("Ready to load ads");
     }
 
     @Override
@@ -64,6 +64,7 @@ public class SplashAdActivity extends BaseActivity implements View.OnClickListen
      */
     public void onClickCheckCache(View view) {
         String hasCache;
+        // hasCache 当前是否有可用广告
         if (TSplashAd.hasCache(DemoConstants.SLOT_ID_SPLASH)) {
             hasCache = "开屏广告 缓存中 -有- 广告";
         } else {
@@ -80,6 +81,7 @@ public class SplashAdActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        // 注意及时释放 destroy 否则容易发生内存泄漏
         if (tSplashAd != null) {
             tSplashAd.destroy();
             tSplashAd = null;
@@ -90,8 +92,9 @@ public class SplashAdActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.preload_ad_btn:
-                showAdStatus("Ad loading...");
+                showAdStatus("Preload Ad loading...");
                 if (tSplashAd == null) {
+                    //广告位ID
                     tSplashAd = new TSplashAd(this, mSlotId);
                     tSplashAd.setRequestBody(
                             new TAdRequestBody.AdRequestBodyBuild()
@@ -99,7 +102,12 @@ public class SplashAdActivity extends BaseActivity implements View.OnClickListen
                     tSplashAd.setOnSkipListener(new TOnSkipListener());
                 }
                 if(TextUtils.isEmpty(sceneToken)){
-                    sceneToken = tSplashAd.enterScene("splash_scene_id");
+                    /**
+                     * 可选项
+                     * 对于需要统计到达广告场景的应用，可自行设置场景值
+                     * 主要目的是统计当前广告场景利用率，第一个参数自定义场景名称，第二个参数广告数量
+                     */
+                    sceneToken = tSplashAd.enterScene("splash_scene_id",1);
                 }
                 tSplashAd.loadAd();
                 break;
@@ -125,8 +133,8 @@ public class SplashAdActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
+    // 监听跳过动作
     private class TOnSkipListener implements OnSkipListener {
-
         @Override
         public void onClick() {
             goToHome();
@@ -141,6 +149,7 @@ public class SplashAdActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
+    // 广告监听器，监听广告的请求、填充、展示、点击、异常、关闭动作的回调
     private static class TAdAlliance extends TAdListener {
         WeakReference<SplashAdActivity> weakReference;
 
@@ -151,14 +160,8 @@ public class SplashAdActivity extends BaseActivity implements View.OnClickListen
         }
 
         @Override
-        public void onStart(int source) {
-            super.onStart(source);
-            ToastUtil.showToast("ad load");
-            AdLogUtil.Log().d(ComConstants.AD_FLOW, "SplashAdActivity --> ad load");
-        }
-
-        @Override
         public void onLoad() {
+            // Request success
             super.onLoad();
             if (null == weakReference.get()) {
                 return;
@@ -168,12 +171,14 @@ public class SplashAdActivity extends BaseActivity implements View.OnClickListen
 
         @Override
         public void onError(TAdErrorCode errorCode) {
+            // Request failed
             AdLogUtil.Log().w(ComConstants.AD_FLOW, "SplashAdActivity --> errorCode:" + errorCode.toString());
             weakReference.get().showAdStatus("Ad failed to load Reason for failure: " + errorCode.getErrorMessage());
         }
 
         @Override
         public void onShow(int source) {
+            // Called when an ad is displayed
             isCloseAd = false;
             AdLogUtil.Log().d(ComConstants.AD_FLOW, "SplashAdActivity --> showAd:");
             weakReference.get().showAdStatus("Ad display");
@@ -181,19 +186,23 @@ public class SplashAdActivity extends BaseActivity implements View.OnClickListen
 
         @Override
         public void onClicked(int source) {
+            // Called when an ad is clicked
             AdLogUtil.Log().d(ComConstants.AD_FLOW, "SplashAdActivity --> ad click");
             weakReference.get().showAdStatus("Clicking on the ad");
         }
 
         @Override
         public void onClosed(int source) {
+            // Called when an ad close
             AdLogUtil.Log().d(ComConstants.AD_FLOW, "SplashAdActivity --> ad close");
             weakReference.get().showAdStatus("Ad close");
             weakReference.get().goToHome();
             isCloseAd = true;
-
+            // 注意： 请选择合适的时机调用tSplashAd destroy 方法 否则容易产生内存泄漏
+        }
+        @Override
+        public void onShowError(TAdErrorCode errorCode) {
+            // Called when an ad show failed
         }
     }
-
-
 }

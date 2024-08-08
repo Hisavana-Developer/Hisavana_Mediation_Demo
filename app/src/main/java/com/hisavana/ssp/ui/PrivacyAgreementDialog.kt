@@ -31,6 +31,7 @@ class PrivacyAgreementDialog(var onClickListener: OnClickListener) : DialogFragm
         isCancelable = false
         setStyle(DialogFragment.STYLE_NORMAL, R.style.BottomDialog)
     }
+
     @Nullable
     override fun onCreateView(
         inflater: LayoutInflater, @Nullable container: ViewGroup?,
@@ -74,7 +75,6 @@ class PrivacyAgreementDialog(var onClickListener: OnClickListener) : DialogFragm
     }
 
     interface OnClickListener {
-
         fun agree()
     }
 }

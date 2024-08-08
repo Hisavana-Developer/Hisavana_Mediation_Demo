@@ -220,7 +220,7 @@ class IconAdActivity : BaseActivity(), OnRefreshLoadMoreListener {
 
         fun loadAd(): MutableList<TAdNativeInfo> {
             if (TextUtils.isEmpty(sceneToken)) {
-                sceneToken = tNativeAd.enterScene("icon_ad_scene_id")
+                sceneToken = tNativeAd.enterScene("icon_ad_scene_id",1)
             }
             var ads: MutableList<TAdNativeInfo> = tNativeAd.nativeAdInfo
             if (ads.isEmpty()) {

@@ -49,8 +49,8 @@ public class InterstitialActivity extends BaseActivity implements View.OnClickLi
         showButton = findViewById(R.id.tAdInterstitial_show);
         showButton.setOnClickListener(this);
         loadBtn.setOnClickListener(this);
-        creatRequest();
         ifSaveInstanceState = false;
+        creatRequest();
     }
 
 
@@ -66,6 +66,7 @@ public class InterstitialActivity extends BaseActivity implements View.OnClickLi
         if(isPreload){
             mTInterstitialAd.preload();
         }else{
+            // 加载广告后在设置的等待时间内将最优广告回调返回
             creatRequest();
             mTInterstitialAd.loadAd();
             loadBtn.setText("Loading Interstitial");
@@ -80,10 +81,20 @@ public class InterstitialActivity extends BaseActivity implements View.OnClickLi
                         ToastUtil.showLongToast("Ad expired");
                     }else{
                         mTInterstitialAd.show(InterstitialActivity.this);
+                        /**
+                         * 可选项
+                         * 对于需要统计到达广告场景的应用，可自行设置场景值
+                         * 主要目的是统计当前广告场景利用率，第一个参数自定义场景名称，第二个参数广告数量
+                         */
+                         // String sceneToken = mTInterstitialAd.enterScene("interstitial_scene_name", 1);
+                         // if (mTInterstitialAd != null && mTInterstitialAd.hasAd()) {
+                         //  mTInterstitialAd.show(context, sceneToken);
+                         //}
                     }
                 }
                 break;
             case R.id.btn_load_interstitial:
+                // 加载广告
                 loadAd(false);
                 break;
             default:
@@ -103,6 +114,7 @@ public class InterstitialActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        // 退出广告场景后，请销毁该广告对象。
         if (mTInterstitialAd != null && !ifSaveInstanceState) {
             mTInterstitialAd.destroy();
             mTInterstitialAd = null;
@@ -110,14 +122,8 @@ public class InterstitialActivity extends BaseActivity implements View.OnClickLi
         handler.removeCallbacksAndMessages(null);
     }
 
-    private void removeView(View v) {
-        if (v == null) return;
-        ViewParent viewGroup = v.getParent();
-        if (viewGroup != null && viewGroup instanceof ViewGroup) {
-            ((ViewGroup) viewGroup).removeView(v);
-        }
-    }
 
+    // 广告监听器，监听广告的请求、填充、展示、点击、异常、关闭动作的回调
     private static class TAdAlliance extends TAdListener {
         WeakReference<InterstitialActivity> weakReference;
 
@@ -127,6 +133,7 @@ public class InterstitialActivity extends BaseActivity implements View.OnClickLi
 
         @Override
         public void onLoad() {
+            // Request success
             if (weakReference.get() == null) {
                 return;
             }
@@ -143,6 +150,7 @@ public class InterstitialActivity extends BaseActivity implements View.OnClickLi
 
         @Override
         public void onError(final TAdErrorCode errorCode) {
+            // Request failed
             if (weakReference.get() == null) {
                 return;
             }
@@ -158,14 +166,8 @@ public class InterstitialActivity extends BaseActivity implements View.OnClickLi
         }
 
         @Override
-        public void onStart(int source) {
-            if (weakReference.get() == null) {
-                return;
-            }
-        }
-
-        @Override
         public void onShow(int source) {
+            // Called when an ad is displayed
             if (weakReference.get() == null) {
                 return;
             }
@@ -181,6 +183,7 @@ public class InterstitialActivity extends BaseActivity implements View.OnClickLi
 
         @Override
         public void onClicked(int source) {
+            // Called when an ad is clicked
             AdLogUtil.Log().d(ComConstants.AD_FLOW,"InterstitialActivity --> onClicked");
             weakReference.get().handler.post(new Runnable() {
                 @Override
@@ -192,6 +195,7 @@ public class InterstitialActivity extends BaseActivity implements View.OnClickLi
 
         @Override
         public void onClosed(int source) {
+            // Called when an ad close
             AdLogUtil.Log().d(ComConstants.AD_FLOW,"InterstitialActivity --> onClosed");
             weakReference.get().handler.post(new Runnable() {
                 @Override
@@ -200,6 +204,11 @@ public class InterstitialActivity extends BaseActivity implements View.OnClickLi
                 }
             });
 
+        }
+
+        @Override
+        public void onShowError(TAdErrorCode errorCode) {
+            // Called when an ad show failed
         }
     }
 }

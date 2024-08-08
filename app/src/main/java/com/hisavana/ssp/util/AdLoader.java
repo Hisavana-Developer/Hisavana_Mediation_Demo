@@ -132,11 +132,6 @@ public class AdLoader {
         }
 
         @Override
-        public void onStart(int source) {
-            AdLogUtil.Log().d(ComConstants.AD_FLOW, "NativeAdActivity --> onStart，source" + source);
-        }
-
-        @Override
         public void onShow(int source) {
             AdLogUtil.Log().d(ComConstants.AD_FLOW, "NativeAdActivity --> onShow，source" + source);
         }

@@ -199,6 +199,7 @@ public class NativeAdInListActivity extends BaseActivity {
     /**
      * 列表的 JavaBean
      */
+    // 广告监听器，监听广告的请求、填充、展示、点击、异常、关闭动作的回调
     static class ItemBean extends TAdListener implements Serializable {
         private String mSlotId = DemoConstants.IS_DEBUG ? TEST_SLOT_ID_NATIVE : SLOT_ID_NATIVE;
         /***标题*/
@@ -237,7 +238,7 @@ public class NativeAdInListActivity extends BaseActivity {
                        .setAdListener(this).build());
            }
            if(TextUtils.isEmpty(sceneToken)){
-               sceneToken = nativeAd.enterScene("native_list_scene_id");
+               sceneToken = nativeAd.enterScene("native_list_scene_id",1);
            }
            List<TAdNativeInfo> list = nativeAd.getNativeAdInfo();
            if(list!=null && list.size()>0){
@@ -361,6 +362,7 @@ public class NativeAdInListActivity extends BaseActivity {
             AdLogUtil.Log().d(ComConstants.AD_FLOW, "TAdAlliance --> onClosed");
             weakReference.get().showAdStatus("Ad close");
             weakReference.get().closeAd(tAdNativeInfo);
+            // 释放资源
             if (null != nativeInfo) {
                 nativeInfo.release();
             }

@@ -76,7 +76,7 @@ public class HotAppActivity extends BaseActivity implements View.OnClickListener
         loadBtn.setOnClickListener(this);
         show_ad = this.findViewById(R.id.show_ad);
         show_ad.setOnClickListener(this);
-        sceneToken = tNativeAd.enterScene("hot_scene_id");
+        sceneToken = tNativeAd.enterScene("hot_scene_id",1);
     }
 
     @Override
@@ -199,15 +199,6 @@ public class HotAppActivity extends BaseActivity implements View.OnClickListener
                 }
             });
             AdLogUtil.Log().d(ComConstants.AD_FLOW, "NativeAdActivity --> onError");
-        }
-
-        @Override
-        public void onStart(int source) {
-            if (weakReference.get() == null) {
-                return;
-            }
-            weakReference.get().showAdStatus("onStart");
-
         }
 
         @Override

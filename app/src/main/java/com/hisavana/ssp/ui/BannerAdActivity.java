@@ -63,16 +63,20 @@ public class BannerAdActivity extends BaseActivity {
         handler.removeCallbacksAndMessages(null);
     }
 
-
-    // =============================================================================================
-
-
     public void loadBannerAd(View view) {
-        if(adview == null){
+        if (adview == null) {
             adview = new TBannerView(this);
-            Log.d(LOG_TAG,"adview == " + adview.hashCode());
+            Log.d(LOG_TAG, "adview == " + adview.hashCode());
             adview.setAdSize(BannerSize.SIZE_320x50);
+            //广告位ID
             adview.setAdUnitId(mSlotId);
+
+            /**
+             * 可选项
+             * 对于需要统计到达广告场景的应用，可自行设置场景值
+             * 主要目的是统计当前广告场景利用率，第一个参数自定义场景名称，第二个参数广告数量
+             */
+            adview.enterScene("banner_scene_name", 1);
             TAdRequestBody tAdRequest = new TAdRequestBody.AdRequestBodyBuild()
                     .setAdListener(new TAdAlliance(this))
                     .build();
@@ -86,19 +90,17 @@ public class BannerAdActivity extends BaseActivity {
 
     }
 
-    private void closeAd(){
-        if(adview != null){
-             adview.destroy();
+    private void closeAd() {
+        if (adview != null) {
+            adview.destroy();
             ((ViewGroup) adview.getParent()).removeView(adview);
             adview.removeAllViews();
             adview = null;
         }
     }
-    // =============================================================================================
 
-
+    // 广告监听器，监听广告的请求、填充、展示、点击、异常、关闭动作的回调
     private static class TAdAlliance extends TAdListener {
-
         WeakReference<BannerAdActivity> weakReference;
 
         TAdAlliance(BannerAdActivity activity) {
@@ -107,6 +109,7 @@ public class BannerAdActivity extends BaseActivity {
 
         @Override
         public void onLoad() {
+            // Request success
             AdLogUtil.Log().d(ComConstants.AD_FLOW, "BannerAdActivity --> onLoad");
             if (weakReference.get() == null) {
                 return;
@@ -123,6 +126,7 @@ public class BannerAdActivity extends BaseActivity {
 
         @Override
         public void onError(TAdErrorCode errorCode) {
+            // Request failed
             if (weakReference.get() == null || null == errorCode) {
                 return;
             }
@@ -138,33 +142,38 @@ public class BannerAdActivity extends BaseActivity {
         }
 
         @Override
-        public void onStart(int source) {
-        }
-
-        @Override
         public void onShow(int source) {
+            // Called when an ad is displayed
             AdLogUtil.Log().d(ComConstants.AD_FLOW, "BannerAdActivity --> onShow");
             weakReference.get().showAdStatus("Ad display");
         }
 
         @Override
         public void onClicked(int source) {
+            // Called when an ad is clicked
             AdLogUtil.Log().d(ComConstants.AD_FLOW, "BannerAdActivity --> onClicked");
             weakReference.get().showAdStatus("clicked on the ad");
         }
 
         @Override
         public void onClosed(int source) {
+            // Called when an ad close
             AdLogUtil.Log().d(ComConstants.AD_FLOW, "BannerAdActivity --> onClosed");
             weakReference.get().showAdStatus("Ad close");
+            //适当的时机释放 destroy
             weakReference.get().closeAd();
+        }
+
+        @Override
+        public void onShowError(TAdErrorCode errorCode) {
+            // Called when an ad show failed
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (adview != null){
+        if (adview != null) {
             adview.resume();
         }
     }
@@ -172,7 +181,7 @@ public class BannerAdActivity extends BaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        if (adview != null){
+        if (adview != null) {
             adview.pause();
         }
     }
