@@ -1,52 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_interstitial"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingBottom="50dp">
 
-    <TextView
-        android:id="@+id/tvADStatus"
-        android:layout_marginBottom="60dp"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:text="Ad status"
-        android:layout_height="wrap_content" />
-
-       <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="vertical" />
-    
+        app:layout_constraintBottom_toTopOf="@id/load_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvADStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="60dp"
+            android:text="Ad Status" />
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/load_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/item_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
         <Button
             android:id="@+id/btn_load_interstitial"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/selector_bg_1"
             android:layout_alignParentBottom="true"
-            android:onClick="loadBannerAd"
-            android:textSize="18sp"
             android:layout_marginLeft="@dimen/anythink_10dp"
             android:layout_marginTop="@dimen/anythink_padding_5dp"
             android:layout_marginRight="@dimen/anythink_10dp"
-            android:textColor="@drawable/selector_btn"
+            android:background="@drawable/selector_bg_1"
+            android:onClick="loadBannerAd"
             android:text="Load Interstitial"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textColor="@drawable/selector_btn"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/tAdInterstitial_show"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/selector_bg_1"
             android:layout_alignParentBottom="true"
-            android:onClick="loadBannerAd"
-            android:textSize="18sp"
             android:layout_marginLeft="@dimen/anythink_10dp"
             android:layout_marginTop="@dimen/anythink_padding_5dp"
             android:layout_marginRight="@dimen/anythink_10dp"
+            android:background="@drawable/selector_bg_1"
+            android:onClick="loadBannerAd"
+            android:text="Show Ad"
             android:textColor="@drawable/selector_btn"
-            android:text="showAd" />
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_load_interstitial" />
 
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.hisavana.ssp.ui;
 import static com.hisavana.ssp.util.DemoConstants.SLOT_ID_NATIVE;
 import static com.hisavana.ssp.util.DemoConstants.TEST_SLOT_ID_NATIVE;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -50,7 +51,7 @@ import java.util.List;
 
 public class NativeAdActivity extends BaseActivity implements View.OnClickListener {
     //改变加载广告，布局宽度，微调样式
-    private Button loadBtn,  show_ad;
+    private Button loadBtn,  showBtn;
     private TNativeAd tNativeAd;
     private EditText slotidetv;
     private TAdNativeView nativeView;
@@ -75,8 +76,8 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
         loadBtn = this.findViewById(R.id.load_ad);
         loadBtn.setOnClickListener(this);
 
-        show_ad = this.findViewById(R.id.show_ad);
-        show_ad.setOnClickListener(this);
+        showBtn = this.findViewById(R.id.show_ad);
+        showBtn.setOnClickListener(this);
     }
 
     @Override
@@ -226,6 +227,15 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
+    private void setButtonsVisibility(Boolean shouldShowButtons) {
+        int orientation = getResources().getConfiguration().orientation;
+        // 仅在横屏时隐藏按钮
+        if (orientation != Configuration.ORIENTATION_LANDSCAPE) { return;}
+        int visibilityState = shouldShowButtons ? View.VISIBLE : View.GONE;
+        loadBtn.setVisibility(visibilityState);
+        showBtn.setVisibility(visibilityState);
+    }
+
     // =============================================================================================
 
 
@@ -268,6 +278,10 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
         @Override
         public void onNativeFeedShow(int source, TAdNativeInfo adNativeInfo){
             // Called when a native ad is displayed
+            NativeAdActivity activity = weakReference.get();
+            if (activity != null) {
+                weakReference.get().setButtonsVisibility(false);
+            }
         }
 
         @Override
@@ -308,6 +322,7 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
           if (activity != null){
               // 适当时机释放
               activity.closeAd(tAdNativeInfo);
+              weakReference.get().setButtonsVisibility(true);
           }
         }
     }

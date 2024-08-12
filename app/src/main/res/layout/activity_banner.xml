@@ -6,20 +6,29 @@
     android:background="@color/anythink_F5F5F5"
     android:orientation="vertical">
 
-<!--    <com.hisavana.mediation.ad.TBannerView-->
-<!--        android:id="@+id/bannerview"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_centerHorizontal="true" />-->
-    <TextView
-        android:id="@+id/tvADStatus"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="68dp"
+    <!--    <com.hisavana.mediation.ad.TBannerView-->
+    <!--        android:id="@+id/bannerview"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_centerHorizontal="true" />-->
+    <ScrollView
         android:layout_width="match_parent"
-        android:background="@color/white"
-        android:textColor="@color/black"
-        android:text="Ad status"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_above="@id/load_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/tvADStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="68dp"
+            android:background="@color/white"
+            android:text="Ad status"
+            android:textColor="@color/black" />
+    </ScrollView>
+
     <LinearLayout
         android:id="@+id/load_content"
         android:layout_width="match_parent"
@@ -32,16 +41,16 @@
             android:id="@+id/load_banner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/selector_bg_1"
             android:layout_alignParentBottom="true"
-            android:onClick="loadBannerAd"
-            android:text="load banner"
-            android:textSize="18sp"
             android:layout_marginLeft="@dimen/anythink_10dp"
             android:layout_marginTop="@dimen/anythink_padding_5dp"
             android:layout_marginRight="@dimen/anythink_10dp"
+            android:background="@drawable/selector_bg_1"
+            android:onClick="loadBannerAd"
+            android:text="load banner"
+            android:textAllCaps="false"
             android:textColor="@drawable/selector_btn"
-            android:textAllCaps="false" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 

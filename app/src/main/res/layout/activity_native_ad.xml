@@ -1,14 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ScrollView
+
+    <com.hisavana.mediation.ad.TAdNativeView
+        android:id="@+id/native_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/native_layout"
-        android:layout_above="@id/load_content">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/load_content"
+        app:layout_constraintTop_toBottomOf="@id/native_layout">
+
         <TextView
             android:id="@+id/tvADStatus"
             android:layout_width="match_parent"
@@ -21,53 +30,45 @@
         android:id="@+id/load_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="0dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/item_background">
+        android:background="@drawable/item_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/load_ad"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/selector_bg_1"
-            android:layout_alignParentBottom="true"
-            android:textSize="18sp"
-            android:layout_marginLeft="@dimen/anythink_10dp"
+            android:layout_marginStart="@dimen/anythink_10dp"
             android:layout_marginTop="@dimen/anythink_padding_5dp"
-            android:layout_marginRight="@dimen/anythink_10dp"
-            android:textColor="@drawable/selector_btn"
+            android:layout_marginEnd="@dimen/anythink_10dp"
+            android:background="@drawable/selector_bg_1"
             android:onClick="loadBannerAd"
             android:text="Load Ad"
             android:textAllCaps="false"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@drawable/selector_btn"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/show_ad"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/selector_bg_1"
-            android:layout_alignParentBottom="true"
-            android:textSize="18sp"
-            android:layout_marginLeft="@dimen/anythink_10dp"
+            android:layout_marginStart="@dimen/anythink_10dp"
             android:layout_marginTop="@dimen/anythink_padding_5dp"
-            android:layout_marginRight="@dimen/anythink_10dp"
-            android:textColor="@drawable/selector_btn"
+            android:layout_marginEnd="@dimen/anythink_10dp"
+            android:background="@drawable/selector_bg_1"
             android:onClick="showBannerAd"
             android:text="Show Ad"
             android:textAllCaps="false"
-            app:layout_constraintTop_toBottomOf="@id/load_ad"
+            android:textColor="@drawable/selector_btn"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
+            app:layout_constraintTop_toBottomOf="@id/load_ad" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.hisavana.mediation.ad.TAdNativeView
-        android:id="@+id/native_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
