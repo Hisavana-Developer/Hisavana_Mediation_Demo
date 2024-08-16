@@ -50,7 +50,6 @@ public class ADMediationVideoActivity extends BaseActivity {
         load = findViewById(R.id.load);
         preload = findViewById(R.id.preload);
         show = findViewById(R.id.show);
-        showAdStatus("准备就绪可以加载广告了");
     }
 
     @Override
@@ -124,9 +123,9 @@ public class ADMediationVideoActivity extends BaseActivity {
 
             @Override
             public void onFinish() {
-                load.setText("LOADAD");
+                load.setText("LoadAd");
                 load.setTextColor(Color.BLACK);
-                show.setText("SHOW");
+                show.setText("Show");
                 show.setTextColor(Color.BLACK);
                 showing = false;
                 loading = false;
