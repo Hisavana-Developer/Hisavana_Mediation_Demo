@@ -19,7 +19,7 @@ buildscript {
 
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:7.2.1"
+        classpath "com.android.tools.build:gradle:7.4.2"
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0'
     }
 }
@@ -51,10 +51,10 @@ task clean(type: Delete) {
 
 ext {
     compileSdkVersion = 33
-    minSdkVersion = 21
-    targetSdkVersion = 33
-    versionCode = 20231213
-    SDK_version = "3.0.1.2"
+    minSdkVersion = 24
+    targetSdkVersion = 34
+    versionCode = 20241016
+    SDK_version = "3.0.7.0"
     versionName = "v1.1"
 }
 

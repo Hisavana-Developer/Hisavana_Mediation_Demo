@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.hisavana.common.bean.TAdErrorCode;
@@ -39,7 +40,7 @@ public class BannerAdActivity extends BaseActivity {
     private Button loadBtn;
     private Handler handler = new Handler(Looper.getMainLooper());
     private String mSlotId = DemoConstants.IS_DEBUG ? TEST_SLOT_ID_BANNER : SLOT_ID_BANNER;
-    private RelativeLayout parentView;
+    private LinearLayout mLlBanner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,7 @@ public class BannerAdActivity extends BaseActivity {
         setContentView(R.layout.activity_banner);
 
         tvADStatus = findViewById(R.id.tvADStatus);
-        parentView = findViewById(R.id.root);
+        mLlBanner = findViewById(R.id.ll_banner);
         loadBtn = findViewById(R.id.load_banner);
         showAdStatus("Ready to load ads");
     }
@@ -81,7 +82,7 @@ public class BannerAdActivity extends BaseActivity {
                     .setAdListener(new TAdAlliance(this))
                     .build();
             adview.setRequestBody(tAdRequest);
-            parentView.addView(adview);
+            mLlBanner.addView(adview);
         }
         AdLogUtil.Log().d(ComConstants.AD_FLOW, "BannerAdActivity --> BannerAdActivity --> start load Banner");
         loadBtn.setText("Loading Banner");
