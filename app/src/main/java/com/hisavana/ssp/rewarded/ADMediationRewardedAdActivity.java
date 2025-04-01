@@ -1,4 +1,4 @@
-package com.hisavana.ssp.video;
+package com.hisavana.ssp.rewarded;
 
 import static com.hisavana.common.constant.ComConstants.VIDEO_TAG;
 import static com.hisavana.ssp.util.DemoConstants.SLOT_ID_VIDEO;
@@ -16,7 +16,7 @@ import com.hisavana.common.bean.TAdErrorCode;
 import com.hisavana.common.bean.TAdRequestBody;
 import com.hisavana.common.interfacz.TAdListener;
 import com.hisavana.common.utils.AdLogUtil;
-import com.hisavana.mediation.ad.TVideoAd;
+import com.hisavana.mediation.ad.TRewardedAd;
 import com.hisavana.ssp.R;
 import com.hisavana.ssp.ui.BaseActivity;
 import com.hisavana.ssp.util.DemoConstants;
@@ -26,12 +26,12 @@ import java.lang.ref.WeakReference;
 /**
  * 聚合 激励视频
  */
-public class ADMediationVideoActivity extends BaseActivity {
+public class ADMediationRewardedAdActivity extends BaseActivity {
 
     /**
-     * 记载激励视频的
+     * 记载激励广告的
      */
-    private TVideoAd tVideoAd;
+    private TRewardedAd tRewardedAd;
     private boolean loading = false;
     private boolean showing = false;
     private Button load;
@@ -43,8 +43,8 @@ public class ADMediationVideoActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Video");
-        setContentView(R.layout.activity_admediation_video);
+        setTitle("Rewarded Ad");
+        setContentView(R.layout.activity_admediation_rewarded);
 
         tvADStatus = findViewById(R.id.tvADStatus);
         load = findViewById(R.id.load);
@@ -54,8 +54,8 @@ public class ADMediationVideoActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        if (null != tVideoAd) {
-            tVideoAd.destroy();
+        if (null != tRewardedAd) {
+            tRewardedAd.destroy();
         }
         if (countDownTimer != null) {
             countDownTimer.cancel();
@@ -85,14 +85,14 @@ public class ADMediationVideoActivity extends BaseActivity {
                     .setAdListener(new TAdAlliance(this))
                     .build();
 
-            tVideoAd = new TVideoAd(this,mSlotId);
-            tVideoAd.setRequestBody(tAdRequest);
+            tRewardedAd = new TRewardedAd(this,mSlotId);
+            tRewardedAd.setRequestBody(tAdRequest);
             if(isPreload){
-                tVideoAd.preload();
+                tRewardedAd.preload();
             }else{
                 load.setTextColor(Color.GRAY);
                 showAdStatus("广告加载中...");
-                tVideoAd.loadAd();
+                tRewardedAd.loadAd();
             }
         }
     }
@@ -103,8 +103,8 @@ public class ADMediationVideoActivity extends BaseActivity {
     public void onShowClick(View view) {
         if (!showing && loading) {
             showing = true;
-            if (tVideoAd != null && tVideoAd.hasAd()) {
-                tVideoAd.show(this);
+            if (tRewardedAd != null && tRewardedAd.hasAd()) {
+                tRewardedAd.show(this);
                 startDelayTimer();
             }
         }
@@ -141,9 +141,9 @@ public class ADMediationVideoActivity extends BaseActivity {
      */
     private static class TAdAlliance extends TAdListener {
 
-        WeakReference<ADMediationVideoActivity> weakReference;
+        WeakReference<ADMediationRewardedAdActivity> weakReference;
 
-        TAdAlliance(ADMediationVideoActivity activity) {
+        TAdAlliance(ADMediationRewardedAdActivity activity) {
             this.weakReference = new WeakReference<>(activity);
         }
 

@@ -14,12 +14,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.cloud.sdk.commonutil.control.AdxPreferencesHelper;
-import com.hisavana.mediation.config.TAdManager;
 import com.hisavana.ssp.BuildConfig;
 import com.hisavana.ssp.R;
-import com.hisavana.ssp.util.DemoConstants;
-import com.hisavana.ssp.video.ADMediationVideoActivity;
+import com.hisavana.ssp.rewarded.ADMediationRewardedAdActivity;
 
 /**
  * @author peng.sun
@@ -125,7 +122,7 @@ public class DemoMainActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(new Intent(this, BannerAdActivity.class));
                 break;
             case R.id.media_videoBtn:
-                startActivity(new Intent(this, ADMediationVideoActivity.class));
+                startActivity(new Intent(this, ADMediationRewardedAdActivity.class));
                 break;
         }
     }

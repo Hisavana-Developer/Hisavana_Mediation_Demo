@@ -219,7 +219,7 @@
                         android:id="@+id/tv_title_rewarded_video"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Video"
+                        android:text="Rewared Ad"
                         android:textColor="@android:color/black"
                         android:textSize="@dimen/anythink_title_size" />
 
@@ -231,7 +231,7 @@
                         android:layout_alignLeft="@id/tv_title_rewarded_video"
                         android:layout_marginTop="@dimen/anythink_desc_margin_top"
                         android:maxLines="3"
-                        android:text="Users can engage with a video ad in exchange for in-app rewards."
+                        android:text="Users can engage with rewarded ads in exchange for in-app rewards."
                         android:textSize="@dimen/anythink_desc_size" />
                 </LinearLayout>
             </RelativeLayout>

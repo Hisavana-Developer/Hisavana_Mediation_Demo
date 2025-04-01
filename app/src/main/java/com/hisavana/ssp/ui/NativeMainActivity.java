@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.hisavana.ssp.R;
-import com.hisavana.ssp.video.ADMediationVideoActivity;
 
 public class NativeMainActivity extends BaseActivity implements View.OnClickListener {
     private RelativeLayout mNativeAd;
