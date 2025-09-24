@@ -105,7 +105,7 @@ dependencies {
     // 143 新增广告源
     implementation("com.cloud.hisavana.sdk.mediation:inmobi-lib:$SDK_version")
     // 143 新增广告源
-    implementation("com.cloud.hisavana.sdk.mediation:vungle-lib:$SDK_version")
+    implementation("com.cloud.hisavana.sdk.mediation:liftoff-lib:$SDK_version")
     // 202新增广告源
     implementation("com.cloud.hisavana.sdk.mediation:adcolony-lib:$SDK_version")
     implementation("com.cloud.hisavana.sdk.mediation:pangle-lib:$SDK_version")
