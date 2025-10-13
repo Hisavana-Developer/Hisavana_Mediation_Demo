@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.cloud.hisavana.sdk.api.view.MediaView;
-import com.cloud.hisavana.sdk.common.bean.TaNativeInfo;
 import com.cloud.sdk.commonutil.widget.TranCircleImageView;
 import com.hisavana.common.bean.AdNativeInfo;
 import com.hisavana.common.bean.TAdErrorCode;
@@ -282,36 +281,19 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
             if (activity != null) {
                 weakReference.get().setButtonsVisibility(false);
             }
+            AdLogUtil.Log().d(ComConstants.AD_FLOW, "NativeAdActivity --> onNativeFeedShow");
+        }
+
+        @Override
+        public void onShowError(TAdErrorCode errorCode) {
+            // Called when an ad show failed
+            AdLogUtil.Log().d(ComConstants.AD_FLOW, "NativeAdActivity --> onShowError");
         }
 
         @Override
         public void onNativeFeedClicked(int source, TAdNativeInfo adNativeInfo) {
             // Called when a native ad is clicked
-        }
-        @Override
-        public void onShowError(TAdErrorCode errorCode) {
-            // Called when an ad show failed
-        }
-
-        @Override
-        public void onShow(int source) {
-            if (weakReference.get() == null) {
-                return;
-            }
-            weakReference.get().showAdStatus("Ad display");
-            AdLogUtil.Log().d(ComConstants.AD_FLOW, "NativeAdActivity --> onShow");
-        }
-
-        @Override
-        public void onClicked(int source) {
-            AdLogUtil.Log().d(ComConstants.AD_FLOW, "NativeAdActivity --> onClicked");
-            weakReference.get().showAdStatus("Clicking on the ad");
-        }
-
-        @Override
-        public void onClosed(int source) {
-            AdLogUtil.Log().d(ComConstants.AD_FLOW, "NativeAdActivity --> onClosed");
-            weakReference.get().showAdStatus("Ad close");
+            AdLogUtil.Log().d(ComConstants.AD_FLOW, "NativeAdActivity --> onNativeFeedClicked");
         }
 
         @Override
@@ -324,6 +306,22 @@ public class NativeAdActivity extends BaseActivity implements View.OnClickListen
               activity.closeAd(tAdNativeInfo);
               weakReference.get().setButtonsVisibility(true);
           }
+          AdLogUtil.Log().d(ComConstants.AD_FLOW, "NativeAdActivity --> onClosed");
+        }
+
+        @Override
+        public void onShow(int source) {
+            // Nothing
+        }
+
+        @Override
+        public void onClicked(int source) {
+            // Nothing
+        }
+
+        @Override
+        public void onClosed(int source) {
+            // Nothing
         }
     }
 }

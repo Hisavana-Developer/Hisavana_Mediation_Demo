@@ -320,10 +320,6 @@ public class NativeAdInListActivity extends BaseActivity {
             weakReference.get().showAdStatus("i = " + position + " ,Ad failed to load Reason for failure:" + errorCode.getErrorMessage());
         }
 
-        @Override
-        public void onShow(int i) {
-
-        }
 
         @Override
         public void onNativeFeedShow(int source, TAdNativeInfo tAdNativeInfo) {
@@ -335,8 +331,8 @@ public class NativeAdInListActivity extends BaseActivity {
         }
 
         @Override
-        public void onClicked(int i) {
-
+        public void onShowError(@Nullable TAdErrorCode tAdErrorCode) {
+            AdLogUtil.Log().d(ComConstants.AD_FLOW, "TAdAlliance --> onShowError");
         }
 
         @Override
@@ -346,11 +342,6 @@ public class NativeAdInListActivity extends BaseActivity {
                 return;
             }
             weakReference.get().showAdStatus("Clicking on the ad, i = " + position);
-        }
-
-        @Override
-        public void onClosed(int i) {
-
         }
 
         @Override
@@ -372,6 +363,21 @@ public class NativeAdInListActivity extends BaseActivity {
             if (tAdNativeView != null) {
                 tAdNativeView.removeAllViews();
             }
+        }
+
+        @Override
+        public void onShow(int i) {
+            // Nothing
+        }
+
+        @Override
+        public void onClicked(int i) {
+            // Nothing
+        }
+
+        @Override
+        public void onClosed(int i) {
+            // Nothing
         }
     }
 

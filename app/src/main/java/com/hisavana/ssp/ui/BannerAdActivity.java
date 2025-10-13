@@ -53,17 +53,6 @@ public class BannerAdActivity extends BaseActivity {
         showAdStatus("Ready to load ads");
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (adview != null) {
-            adview.destroy();
-            adview.removeAllViews();
-        }
-        adview = null;
-        handler.removeCallbacksAndMessages(null);
-    }
-
     public void loadBannerAd(View view) {
         if (adview == null) {
             adview = new TBannerView(this);
@@ -89,15 +78,6 @@ public class BannerAdActivity extends BaseActivity {
         showAdStatus("ad loading...");
         adview.loadAd();
 
-    }
-
-    private void closeAd() {
-        if (adview != null) {
-            adview.destroy();
-            ((ViewGroup) adview.getParent()).removeView(adview);
-            adview.removeAllViews();
-            adview = null;
-        }
     }
 
     // 广告监听器，监听广告的请求、填充、展示、点击、异常、关闭动作的回调
@@ -160,14 +140,12 @@ public class BannerAdActivity extends BaseActivity {
         public void onClosed(int source) {
             // Called when an ad close
             AdLogUtil.Log().d(ComConstants.AD_FLOW, "BannerAdActivity --> onClosed");
-            weakReference.get().showAdStatus("Ad close");
-            //适当的时机释放 destroy
-            weakReference.get().closeAd();
         }
 
         @Override
         public void onShowError(TAdErrorCode errorCode) {
             // Called when an ad show failed
+            AdLogUtil.Log().d(ComConstants.AD_FLOW, "BannerAdActivity --> onShowError");
         }
     }
 
@@ -184,6 +162,27 @@ public class BannerAdActivity extends BaseActivity {
         super.onPause();
         if (adview != null) {
             adview.pause();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (adview != null) {
+            adview.destroy();
+            adview.removeAllViews();
+            removeView(adview);
+            adview = null;
+        }
+        handler.removeCallbacksAndMessages(null);
+    }
+
+    // 移除广告视图
+    private void removeView(View v) {
+        if (v == null) return;
+        ViewParent viewGroup = v.getParent();
+        if (viewGroup instanceof ViewGroup) {
+            ((ViewGroup) viewGroup).removeView(v);
         }
     }
 }

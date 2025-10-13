@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +14,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.hisavana.common.bean.AdNativeInfo;
 import com.hisavana.common.bean.TAdErrorCode;
 import com.hisavana.common.bean.TAdNativeInfo;
 import com.hisavana.common.bean.TAdRequestBody;
@@ -202,24 +201,38 @@ public class HotAppActivity extends BaseActivity implements View.OnClickListener
         }
 
         @Override
+        public void onNativeFeedShow(int i, @Nullable TAdNativeInfo tAdNativeInfo) {
+            AdLogUtil.Log().d(ComConstants.AD_FLOW, "NativeAdActivity --> onNativeFeedShow");
+        }
+
+        @Override
+        public void onNativeFeedClicked(int i, @Nullable TAdNativeInfo tAdNativeInfo) {
+            AdLogUtil.Log().d(ComConstants.AD_FLOW, "NativeAdActivity --> onNativeFeedClicked");
+        }
+
+        @Override
+        public void onClosed(@Nullable TAdNativeInfo tAdNativeInfo) {
+            AdLogUtil.Log().d(ComConstants.AD_FLOW, "NativeAdActivity --> onClosed");
+        }
+
+        @Override
+        public void onShowError(@Nullable TAdErrorCode tAdErrorCode) {
+            AdLogUtil.Log().d(ComConstants.AD_FLOW, "NativeAdActivity --> onShowError");
+        }
+
+        @Override
         public void onShow(int source) {
-            if (weakReference.get() == null) {
-                return;
-            }
-            weakReference.get().showAdStatus("ad display");
-            AdLogUtil.Log().d(ComConstants.AD_FLOW, "NativeAdActivity --> onShow");
+            // Nothing
         }
 
         @Override
         public void onClicked(int source) {
-            AdLogUtil.Log().d(ComConstants.AD_FLOW, "NativeAdActivity --> onClicked");
-            weakReference.get().showAdStatus("clicked on the ad");
+            // Nothing
         }
 
         @Override
         public void onClosed(int source) {
-            AdLogUtil.Log().d(ComConstants.AD_FLOW, "NativeAdActivity --> onClosed");
-            weakReference.get().showAdStatus("ad close");
+            // Nothing
         }
     }
 

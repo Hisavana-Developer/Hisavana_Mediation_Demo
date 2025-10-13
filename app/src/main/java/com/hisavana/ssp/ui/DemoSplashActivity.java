@@ -151,14 +151,6 @@ public class DemoSplashActivity extends AppCompatActivity implements PrivacyAgre
          */
          // View logoLayout = LayoutInflater.from(this).inflate(R.layout.splash_logo_layout, null, false);
          // tSplashAd.showAd(tSplashView, logoLayout);
-
-        /**
-         * 可选项
-         * 同时设置到达广告场景和添加子布局
-         */
-        // String sceneToken = tSplashAd.enterScene("splash_scene_id", 1);
-        // View logoLayout = LayoutInflater.from(this).inflate(R.layout.splash_logo_layout, null, false);
-        // tSplashAd.showAd(tSplashView, logoLayout, sceneToken);
     }
 
     private void finishPage() {
@@ -181,8 +173,9 @@ public class DemoSplashActivity extends AppCompatActivity implements PrivacyAgre
     protected void onDestroy() {
         super.onDestroy();
         // 注意及时释放 destroy 否则容易发生内存泄漏
-        if(tSplashAd != null){
+        if (tSplashAd != null){
             tSplashAd.destroy();
+            tSplashAd = null;
         }
         delayHandler.removeCallbacks(mRunnable);
     }
@@ -245,7 +238,6 @@ public class DemoSplashActivity extends AppCompatActivity implements PrivacyAgre
                 activity.goToMain();
                 isClosed = true;
             }
-            //选择合适时机 注意及时释放tSplashAd destroy 否则容易发生内存泄漏
         }
 
         @Override
