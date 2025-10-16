@@ -42,6 +42,13 @@ allprojects {
         maven {
             url  "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea"
         }
+
+        configurations.configureEach {
+            resolutionStrategy {
+                // 强制指定版本为18.1.0
+                force 'com.google.android.gms:play-services-ads-identifier:18.1.0'
+            }
+        }
     }
 }
 
@@ -54,7 +61,7 @@ ext {
     minSdkVersion = 24
     targetSdkVersion = 34
     versionCode = 20250522
-    SDK_version = "3.4.8.2"
+    SDK_version = "3.5.0.2"
     versionName = "v1.1"
 }
 
