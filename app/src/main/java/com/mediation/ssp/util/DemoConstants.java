@@ -1,4 +1,4 @@
-package com.hisavana.ssp.util;
+package com.mediation.ssp.util;
 
 import android.util.Log;
 

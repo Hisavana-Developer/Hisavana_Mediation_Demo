@@ -1,4 +1,4 @@
-package com.hisavana.ssp.app;
+package com.mediation.ssp.app;
 
 import static com.hisavana.common.constant.ComConstants.SDK_INIT;
 
@@ -11,9 +11,10 @@ import android.webkit.WebView;
 
 import androidx.multidex.MultiDex;
 
+import com.cloud.sdk.commonutil.util.HSSharedPreferencesUtil;
 import com.hisavana.common.constant.ComConstants;
 import com.hisavana.common.utils.AdLogUtil;
-import com.hisavana.ssp.R;
+import com.mediation.ssp.R;
 import com.scwang.smart.refresh.footer.ClassicsFooter;
 import com.scwang.smart.refresh.header.ClassicsHeader;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
@@ -62,7 +63,7 @@ public class BaseApp extends Application {
     public void onCreate() {
         super.onCreate();
         AdLogUtil.Log().d(ComConstants.SDK_INIT, "BaseApp --> onCreate");
-        SharedPreferencesUtil.bindApplication(this);
+        HSSharedPreferencesUtil.bindApplication(this);
         initWebPath();
     }
 

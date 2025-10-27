@@ -1,8 +1,8 @@
-package com.hisavana.ssp.ui;
+package com.mediation.ssp.ui;
 
-import static com.hisavana.ssp.util.DemoConstants.LOG_TAG;
-import static com.hisavana.ssp.util.DemoConstants.SLOT_ID_BANNER;
-import static com.hisavana.ssp.util.DemoConstants.TEST_SLOT_ID_BANNER;
+import static com.mediation.ssp.util.DemoConstants.LOG_TAG;
+import static com.mediation.ssp.util.DemoConstants.SLOT_ID_BANNER;
+import static com.mediation.ssp.util.DemoConstants.TEST_SLOT_ID_BANNER;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.hisavana.common.bean.TAdErrorCode;
 import com.hisavana.common.bean.TAdRequestBody;
@@ -22,8 +21,8 @@ import com.hisavana.common.constant.ComConstants;
 import com.hisavana.common.interfacz.TAdListener;
 import com.hisavana.common.utils.AdLogUtil;
 import com.hisavana.mediation.ad.TBannerView;
-import com.hisavana.ssp.R;
-import com.hisavana.ssp.util.DemoConstants;
+import com.mediation.ssp.R;
+import com.mediation.ssp.util.DemoConstants;
 
 import java.lang.ref.WeakReference;
 

@@ -1,4 +1,4 @@
-package com.hisavana.ssp.ui
+package com.mediation.ssp.ui
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -15,8 +15,8 @@ import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.fragment.app.DialogFragment
 import com.cloud.sdk.commonutil.control.AdxPreferencesHelper
-import com.hisavana.ssp.R
-import com.hisavana.ssp.util.DemoConstants
+import com.mediation.ssp.R
+import com.mediation.ssp.util.DemoConstants
 import kotlin.system.exitProcess
 
 
@@ -29,7 +29,7 @@ class PrivacyAgreementDialog(var onClickListener: OnClickListener) : DialogFragm
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         isCancelable = false
-        setStyle(DialogFragment.STYLE_NORMAL, R.style.BottomDialog)
+        setStyle(STYLE_NORMAL, R.style.BottomDialog)
     }
 
     @Nullable

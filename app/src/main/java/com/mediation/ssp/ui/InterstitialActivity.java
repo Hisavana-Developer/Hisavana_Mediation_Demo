@@ -1,14 +1,12 @@
-package com.hisavana.ssp.ui;
+package com.mediation.ssp.ui;
 
-import static com.hisavana.ssp.util.DemoConstants.SLOT_ID_INTERSTITIAL;
-import static com.hisavana.ssp.util.DemoConstants.TEST_SLOT_ID_INTERSTITIAL;
+import static com.mediation.ssp.util.DemoConstants.SLOT_ID_INTERSTITIAL;
+import static com.mediation.ssp.util.DemoConstants.TEST_SLOT_ID_INTERSTITIAL;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
@@ -19,8 +17,8 @@ import com.hisavana.common.constant.ComConstants;
 import com.hisavana.common.interfacz.TAdListener;
 import com.hisavana.common.utils.AdLogUtil;
 import com.hisavana.mediation.ad.TInterstitialAd;
-import com.hisavana.ssp.R;
-import com.hisavana.ssp.util.DemoConstants;
+import com.mediation.ssp.R;
+import com.mediation.ssp.util.DemoConstants;
 import com.transsion.core.utils.ToastUtil;
 
 import java.lang.ref.WeakReference;

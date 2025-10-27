@@ -1,4 +1,4 @@
-package com.hisavana.ssp.ui;
+package com.mediation.ssp.ui;
 
 import android.os.Bundle;
 import android.widget.TextView;

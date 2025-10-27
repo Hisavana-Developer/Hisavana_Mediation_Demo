@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.hisavana.ssp">
+    package="com.mediation.ssp">
     <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> -->
     <!-- <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".app.BaseApp"
+        android:name="com.mediation.ssp.app.BaseApp"
         android:icon="@mipmap/icon_app"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
@@ -15,10 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.NativeMainActivity"
+            android:name="com.mediation.ssp.ui.NativeMainActivity"
             android:exported="false" />
         <activity
-            android:name=".rewarded.ADMediationRewardedAdActivity"
+            android:name="com.mediation.ssp.rewarded.ADMediationRewardedAdActivity"
             android:exported="false" />
 
         <meta-data
@@ -29,16 +29,16 @@
             android:value="ca-app-pub-9157456537535562~4840692163" />
 
         <activity
-            android:name=".ui.DemoMainActivity"
+            android:name="com.mediation.ssp.ui.DemoMainActivity"
             android:exported="true"
             android:launchMode="singleTask"></activity>
-        <activity android:name=".ui.NativeAdActivity" />
-        <activity android:name=".ui.NativeAdInListActivity" />
-        <activity android:name=".ui.IconAdActivity" />
-        <activity android:name=".ui.BannerAdActivity" />
-        <activity android:name=".ui.InterstitialActivity" />
-        <activity android:name=".ui.HotAppActivity" />
-        <activity android:name=".ui.SplashAdActivity" /> <!-- google ad activity -->
+        <activity android:name="com.mediation.ssp.ui.NativeAdActivity" />
+        <activity android:name="com.mediation.ssp.ui.NativeAdInListActivity" />
+        <activity android:name="com.mediation.ssp.ui.IconAdActivity" />
+        <activity android:name="com.mediation.ssp.ui.BannerAdActivity" />
+        <activity android:name="com.mediation.ssp.ui.InterstitialActivity" />
+        <activity android:name="com.mediation.ssp.ui.HotAppActivity" />
+        <activity android:name="com.mediation.ssp.ui.SplashAdActivity" /> <!-- google ad activity -->
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
@@ -46,7 +46,7 @@
             android:theme="@android:style/Theme.DeviceDefault.Light"
             tools:replace="android:theme" />
         <activity
-            android:name=".ui.DemoSplashActivity"
+            android:name="com.mediation.ssp.ui.DemoSplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/SplashScreen">

@@ -1,10 +1,9 @@
-package com.hisavana.ssp.ui
+package com.mediation.ssp.ui
 
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.provider.ContactsContract.Data
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
@@ -21,9 +20,8 @@ import com.hisavana.common.interfacz.TAdListener
 import com.hisavana.mediation.ad.TAdNativeView
 import com.hisavana.mediation.ad.TNativeAd
 import com.hisavana.mediation.ad.ViewBinder
-import com.hisavana.ssp.R
-import com.hisavana.ssp.ui.HotAppActivity.HotHolder
-import com.hisavana.ssp.util.DemoConstants
+import com.mediation.ssp.R
+import com.mediation.ssp.util.DemoConstants
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
@@ -160,12 +158,12 @@ class IconAdActivity : BaseActivity(), OnRefreshLoadMoreListener {
 
     }
 
-    inner class NormalHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class NormalHolder(itemView: View) : ViewHolder(itemView) {
         val title: TextView = itemView.findViewById<TextView>(R.id.title)
         val des: TextView = itemView.findViewById<TextView>(R.id.des)
     }
 
-    inner class AdHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class AdHolder(itemView: View) : ViewHolder(itemView) {
         val tAdNativeView = itemView.findViewById<TAdNativeView>(R.id.native_view)
 
         fun bindAd(ad: DataBean) {

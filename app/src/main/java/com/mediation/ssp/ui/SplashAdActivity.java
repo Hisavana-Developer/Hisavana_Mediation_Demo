@@ -1,19 +1,15 @@
-package com.hisavana.ssp.ui;
+package com.mediation.ssp.ui;
 
-import static com.hisavana.ssp.util.DemoConstants.SLOT_ID_SPLASH;
-import static com.hisavana.ssp.util.DemoConstants.TEST_SLOT_ID_SPLASH;
+import static com.mediation.ssp.util.DemoConstants.SLOT_ID_SPLASH;
+import static com.mediation.ssp.util.DemoConstants.TEST_SLOT_ID_SPLASH;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 
 import com.hisavana.common.bean.TAdErrorCode;
-import com.hisavana.common.bean.TAdNativeInfo;
 import com.hisavana.common.bean.TAdRequestBody;
 import com.hisavana.common.constant.ComConstants;
 import com.hisavana.common.interfacz.OnSkipListener;
@@ -21,12 +17,11 @@ import com.hisavana.common.interfacz.TAdListener;
 import com.hisavana.common.utils.AdLogUtil;
 import com.hisavana.mediation.ad.TSplashAd;
 import com.hisavana.mediation.ad.TSplashView;
-import com.hisavana.ssp.R;
-import com.hisavana.ssp.util.DemoConstants;
+import com.mediation.ssp.R;
+import com.mediation.ssp.util.DemoConstants;
 import com.transsion.core.utils.ToastUtil;
 
 import java.lang.ref.WeakReference;
-import java.util.List;
 
 /**
  * 开屏广告Demo
@@ -109,7 +104,7 @@ public class SplashAdActivity extends BaseActivity implements View.OnClickListen
                      */
                     sceneToken = tSplashAd.enterScene("splash_scene_id",1);
                 }
-                tSplashAd.loadAd();
+                tSplashAd.preload();
                 break;
             case R.id.load_ad_btn:
                 showAdStatus("Ad loading...");

@@ -1,6 +1,6 @@
-package com.hisavana.ssp.ui;
+package com.mediation.ssp.ui;
 
-import static com.hisavana.ssp.util.DemoConstants.SLOT_ID_HOT_APP;
+import static com.mediation.ssp.util.DemoConstants.SLOT_ID_HOT_APP;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -28,7 +28,7 @@ import com.hisavana.common.utils.AdLogUtil;
 import com.hisavana.mediation.ad.TAdNativeView;
 import com.hisavana.mediation.ad.TNativeAd;
 import com.hisavana.mediation.ad.ViewBinder;
-import com.hisavana.ssp.R;
+import com.mediation.ssp.R;
 import com.transsion.core.utils.ToastUtil;
 
 import java.lang.ref.WeakReference;

@@ -1,4 +1,4 @@
-package com.hisavana.ssp.ui;
+package com.mediation.ssp.ui;
 
 import static com.transsion.core.utils.PermissionUtil.lacksPermissions;
 import android.app.Activity;
@@ -14,9 +14,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.hisavana.ssp.BuildConfig;
-import com.hisavana.ssp.R;
-import com.hisavana.ssp.rewarded.ADMediationRewardedAdActivity;
+import com.mediation.ssp.BuildConfig;
+import com.mediation.ssp.R;
+import com.mediation.ssp.rewarded.ADMediationRewardedAdActivity;
 
 /**
  * @author peng.sun
@@ -41,7 +41,7 @@ public class DemoMainActivity extends AppCompatActivity implements View.OnClickL
         // 显示当前引入 SDK 版本号
         TextView tvSDKVersion = findViewById(R.id.tvSDKVersion);
         // com.hisavana.common.BuildConfig
-        tvSDKVersion.setText("Current SDK Version is "+BuildConfig.sdk_version);
+        tvSDKVersion.setText("Current SDK Version is "+ BuildConfig.sdk_version);
 
         initView();
         initListener();

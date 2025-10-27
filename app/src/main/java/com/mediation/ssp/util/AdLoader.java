@@ -1,4 +1,4 @@
-package com.hisavana.ssp.util;
+package com.mediation.ssp.util;
 
 import android.content.res.Resources;
 import android.util.Log;
@@ -13,7 +13,7 @@ import com.hisavana.common.utils.AdLogUtil;
 import com.hisavana.mediation.ad.TAdNativeView;
 import com.hisavana.mediation.ad.TNativeAd;
 import com.hisavana.mediation.ad.ViewBinder;
-import com.hisavana.ssp.R;
+import com.mediation.ssp.R;
 import com.transsion.core.CoreUtil;
 import com.transsion.core.utils.ToastUtil;
 

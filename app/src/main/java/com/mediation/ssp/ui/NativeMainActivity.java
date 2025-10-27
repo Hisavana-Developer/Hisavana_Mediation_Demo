@@ -1,13 +1,11 @@
-package com.hisavana.ssp.ui;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.mediation.ssp.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 
-import com.hisavana.ssp.R;
+import com.mediation.ssp.R;
 
 public class NativeMainActivity extends BaseActivity implements View.OnClickListener {
     private RelativeLayout mNativeAd;

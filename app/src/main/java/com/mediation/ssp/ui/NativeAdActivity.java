@@ -1,7 +1,7 @@
-package com.hisavana.ssp.ui;
+package com.mediation.ssp.ui;
 
-import static com.hisavana.ssp.util.DemoConstants.SLOT_ID_NATIVE;
-import static com.hisavana.ssp.util.DemoConstants.TEST_SLOT_ID_NATIVE;
+import static com.mediation.ssp.util.DemoConstants.SLOT_ID_NATIVE;
+import static com.mediation.ssp.util.DemoConstants.TEST_SLOT_ID_NATIVE;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -30,9 +30,8 @@ import com.hisavana.mediation.ad.TMediaView;
 import com.hisavana.mediation.ad.TNativeAd;
 
 import com.hisavana.mediation.ad.ViewBinder;
-import com.hisavana.ssp.R;
-import com.hisavana.ssp.util.DemoConstants;
-import com.transsion.core.utils.ScreenUtil;
+import com.mediation.ssp.R;
+import com.mediation.ssp.util.DemoConstants;
 import com.transsion.core.utils.ToastUtil;
 
 import java.lang.ref.WeakReference;

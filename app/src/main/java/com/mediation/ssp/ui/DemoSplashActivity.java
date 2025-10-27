@@ -1,9 +1,9 @@
-package com.hisavana.ssp.ui;
+package com.mediation.ssp.ui;
 
-import static com.hisavana.ssp.util.DemoConstants.IS_DEBUG;
-import static com.hisavana.ssp.util.DemoConstants.LOG_TAG;
-import static com.hisavana.ssp.util.DemoConstants.SLOT_ID_SPLASH;
-import static com.hisavana.ssp.util.DemoConstants.TEST_SLOT_ID_SPLASH;
+import static com.mediation.ssp.util.DemoConstants.IS_DEBUG;
+import static com.mediation.ssp.util.DemoConstants.LOG_TAG;
+import static com.mediation.ssp.util.DemoConstants.SLOT_ID_SPLASH;
+import static com.mediation.ssp.util.DemoConstants.TEST_SLOT_ID_SPLASH;
 
 import android.content.Intent;
 import android.os.Build;
@@ -29,8 +29,8 @@ import com.hisavana.common.interfacz.TAdListener;
 import com.hisavana.mediation.ad.TSplashAd;
 import com.hisavana.mediation.ad.TSplashView;
 import com.hisavana.mediation.config.TAdManager;
-import com.hisavana.ssp.R;
-import com.hisavana.ssp.util.DemoConstants;
+import com.mediation.ssp.R;
+import com.mediation.ssp.util.DemoConstants;
 
 import java.lang.ref.WeakReference;
 

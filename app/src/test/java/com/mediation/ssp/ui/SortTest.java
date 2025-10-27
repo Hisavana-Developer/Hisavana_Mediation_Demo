@@ -1,4 +1,4 @@
-package com.hisavana.ssp.ui;
+package com.mediation.ssp.ui;
 
 import com.hisavana.common.bean.AdCache;
 import com.hisavana.common.interfacz.ICacheAd;
